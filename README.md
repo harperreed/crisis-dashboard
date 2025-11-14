@@ -41,7 +41,21 @@ Set environment variables in `.env`:
 ```
 ETHERSCAN_API_KEY=your_key_here
 COINGECKO_API_KEY=your_key_here
+ALCHEMY_API_KEY=your_key_here
 ```
+
+### API Keys
+
+1. Add `ETHERSCAN_API_KEY` to `.env` and repository secrets (Settings → Secrets → Actions)
+   - Get free API key from https://etherscan.io/apis
+
+2. Add `COINGECKO_API_KEY` to `.env` and repository secrets (Settings → Secrets → Actions)
+   - Get free API key from https://www.coingecko.com/en/api
+
+3. Add `ALCHEMY_API_KEY` to `.env` and repository secrets (Settings → Secrets → Actions)
+   - Get free API key from https://www.alchemy.com/
+   - Create a new app for Ethereum Mainnet
+   - Copy the API key
 
 ## Deployment
 
