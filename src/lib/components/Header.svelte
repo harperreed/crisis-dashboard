@@ -1,7 +1,6 @@
 <!-- ABOUTME: Dashboard header with title, currency toggle, and refresh button -->
 <!-- ABOUTME: Displays last updated timestamp and controls -->
 <script>
-  import { currency, toggleCurrency } from '../stores/currency.js';
   import { lastUpdated, loadTreasuryData } from '../stores/treasury.js';
   import { formatTimeAgo } from '../utils/formatters.js';
 
@@ -29,13 +28,6 @@
     </div>
 
     <div class="flex items-center gap-4">
-      <button
-        on:click={toggleCurrency}
-        class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-      >
-        {$currency === 'USD' ? '💵 USD' : 'Ξ ETH'}
-      </button>
-
       <button
         on:click={handleRefresh}
         disabled={isRefreshing}

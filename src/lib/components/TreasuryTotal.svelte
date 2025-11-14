@@ -1,13 +1,11 @@
 <!-- ABOUTME: Large display of total treasury value -->
-<!-- ABOUTME: Shows value in selected currency with skeleton loader -->
+<!-- ABOUTME: Shows value in both ETH and USD -->
 <script>
-  import { currency } from '../stores/currency.js';
   import { totalTreasuryValue, treasuryData, isLoading } from '../stores/treasury.js';
   import { formatUSD, formatETH } from '../utils/formatters.js';
 
-  $: displayValue = $currency === 'USD'
-    ? formatUSD($totalTreasuryValue)
-    : formatETH($totalTreasuryValue / ($treasuryData?.ethPrice || 1));
+  $: ethValue = formatETH($totalTreasuryValue / ($treasuryData?.ethPrice || 1));
+  $: usdValue = formatUSD($totalTreasuryValue);
 </script>
 
 <section class="bg-gray-50 rounded-lg p-6 mb-8">
@@ -19,7 +17,7 @@
     <div class="h-16 bg-gray-200 animate-pulse rounded"></div>
   {:else}
     <p class="text-5xl font-bold text-gray-900">
-      {displayValue}
+      {ethValue} / {usdValue}
     </p>
   {/if}
 </section>

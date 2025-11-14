@@ -1,7 +1,6 @@
 <!-- ABOUTME: Treasury value breakdown by asset type -->
 <!-- ABOUTME: Shows ETH, stablecoins, tokens, and NFTs with values -->
 <script>
-  import { currency } from '../stores/currency.js';
   import { treasuryData, isLoading } from '../stores/treasury.js';
   import { formatUSD, formatETH, formatTokenPrice } from '../utils/formatters.js';
   import { sum } from '../utils/calculations.js';
@@ -15,17 +14,6 @@
   $: tokensValue = sum($treasuryData?.tokens?.map(t => t.balance * t.price) || []);
   $: nftsValue = sum($treasuryData?.nfts?.map(n => n.tokens.length * n.floorPrice * ($treasuryData?.ethPrice || 0)) || []);
   $: tokensWithValue = $treasuryData?.tokens?.filter(t => t.balance > 0 && (t.balance * t.price) >= 0.50) || [];
-
-  function formatValue(value) {
-    if ($currency === 'USD') return formatUSD(value);
-    return formatETH(value / ($treasuryData?.ethPrice || 1));
-  }
-
-  function formatPrice(usdPrice) {
-    if ($currency === 'USD') return formatTokenPrice(usdPrice);
-    const ethPrice = usdPrice / ($treasuryData?.ethPrice || 1);
-    return formatETH(ethPrice);
-  }
 
   function toggleNFTs() {
     nftsExpanded = !nftsExpanded;
@@ -69,7 +57,9 @@
           <span class="font-medium">
             {ethExpanded ? '▼' : '▶'} ETH & Stablecoins
           </span>
-          <span class="font-semibold">{formatValue(ethValue + stablecoinsValue)}</span>
+          <span class="font-semibold">
+            {formatETH((ethValue + stablecoinsValue) / ($treasuryData?.ethPrice || 1))} / {formatUSD(ethValue + stablecoinsValue)}
+          </span>
         </button>
 
         {#if ethExpanded}
@@ -78,30 +68,27 @@
               <tr class="text-left text-gray-500 border-b">
                 <th class="pb-2">Asset</th>
                 <th class="pb-2 text-right">Balance</th>
-                <th class="pb-2 text-right">Price</th>
-                <th class="pb-2 text-right">Value</th>
+                <th class="pb-2 text-right">Price (USD)</th>
+                <th class="pb-2 text-right">ETH Value</th>
+                <th class="pb-2 text-right">USD Value</th>
               </tr>
             </thead>
             <tbody class="text-gray-700">
               <tr class="border-b hover:bg-gray-50">
                 <td class="py-2">ETH</td>
                 <td class="py-2 text-right">{formatETH($treasuryData?.ethBalance || 0)}</td>
-                <td class="py-2 text-right">
-                  {#if $currency === 'USD'}
-                    {formatUSD($treasuryData?.ethPrice || 0)}
-                  {:else}
-                    Ξ 1.00
-                  {/if}
-                </td>
-                <td class="py-2 text-right font-medium">{formatValue(ethValue)}</td>
+                <td class="py-2 text-right">{formatUSD($treasuryData?.ethPrice || 0)}</td>
+                <td class="py-2 text-right font-medium">{formatETH(($treasuryData?.ethBalance || 0))}</td>
+                <td class="py-2 text-right font-medium">{formatUSD(ethValue)}</td>
               </tr>
               {#if stablecoinsValue > 0}
                 {#each Object.entries($treasuryData?.stablecoins || {}) as [symbol, balance]}
                   <tr class="border-b hover:bg-gray-50">
                     <td class="py-2">{symbol}</td>
                     <td class="py-2 text-right">{balance.toFixed(2)}</td>
-                    <td class="py-2 text-right">{formatPrice(1)}</td>
-                    <td class="py-2 text-right font-medium">{formatValue(balance)}</td>
+                    <td class="py-2 text-right">{formatUSD(1)}</td>
+                    <td class="py-2 text-right font-medium">{formatETH(balance / ($treasuryData?.ethPrice || 1))}</td>
+                    <td class="py-2 text-right font-medium">{formatUSD(balance)}</td>
                   </tr>
                 {/each}
               {/if}
@@ -120,7 +107,9 @@
           <span class="font-medium">
             {tokensExpanded ? '▼' : '▶'} ERC-20 Tokens ({tokensWithValue.length})
           </span>
-          <span class="font-semibold">{formatValue(tokensValue)}</span>
+          <span class="font-semibold">
+            {formatETH(tokensValue / ($treasuryData?.ethPrice || 1))} / {formatUSD(tokensValue)}
+          </span>
         </button>
 
         {#if tokensWithValue.length > 0 && tokensExpanded}
@@ -130,8 +119,9 @@
                 <tr class="text-left text-gray-500 border-b">
                   <th class="pb-2">Token</th>
                   <th class="pb-2 text-right">Balance</th>
-                  <th class="pb-2 text-right">Price</th>
-                  <th class="pb-2 text-right">Value</th>
+                  <th class="pb-2 text-right">Price (USD)</th>
+                  <th class="pb-2 text-right">ETH Value</th>
+                  <th class="pb-2 text-right">USD Value</th>
                 </tr>
               </thead>
               <tbody class="text-gray-700">
@@ -143,19 +133,23 @@
                     <td class="py-2 text-right">{token.balance.toFixed(4)}</td>
                     <td class="py-2 text-right">
                       {#if token.price > 0}
-                        {formatPrice(token.price)}
+                        {formatTokenPrice(token.price)}
                       {:else}
                         <span class="text-gray-400">—</span>
                       {/if}
                     </td>
-                    <td class="py-2 text-right font-medium">{formatValue(token.balance * token.price)}</td>
+                    <td class="py-2 text-right font-medium">{formatETH((token.balance * token.price) / ($treasuryData?.ethPrice || 1))}</td>
+                    <td class="py-2 text-right font-medium">{formatUSD(token.balance * token.price)}</td>
                   </tr>
                 {/each}
                 {#if tokensWithValue.length > 20}
                   <tr class="text-gray-500">
                     <td class="py-2" colspan="3">+{tokensWithValue.length - 20} more tokens</td>
                     <td class="py-2 text-right font-medium">
-                      {formatValue(sum(tokensWithValue.slice(20).map(t => t.balance * t.price)))}
+                      {formatETH(sum(tokensWithValue.slice(20).map(t => t.balance * t.price)) / ($treasuryData?.ethPrice || 1))}
+                    </td>
+                    <td class="py-2 text-right font-medium">
+                      {formatUSD(sum(tokensWithValue.slice(20).map(t => t.balance * t.price)))}
                     </td>
                   </tr>
                 {/if}
@@ -175,7 +169,9 @@
           <span class="font-medium">
             {nftsExpanded ? '▼' : '▶'} NFTs ({$treasuryData?.nfts?.length || 0} collections)
           </span>
-          <span class="font-semibold">{formatValue(nftsValue)}</span>
+          <span class="font-semibold">
+            {formatETH(nftsValue / ($treasuryData?.ethPrice || 1))} / {formatUSD(nftsValue)}
+          </span>
         </button>
 
         {#if $treasuryData?.nfts?.length > 0 && nftsExpanded}
@@ -186,7 +182,8 @@
                   <th class="pb-2">Collection</th>
                   <th class="pb-2 text-right">Quantity</th>
                   <th class="pb-2 text-right">Floor Price</th>
-                  <th class="pb-2 text-right">Value</th>
+                  <th class="pb-2 text-right">ETH Value</th>
+                  <th class="pb-2 text-right">USD Value</th>
                   <th class="pb-2 text-center">Links</th>
                 </tr>
               </thead>
@@ -196,14 +193,9 @@
                   <tr class="border-b hover:bg-gray-50">
                     <td class="py-2">{nft.name}</td>
                     <td class="py-2 text-right">{nft.tokens.length}</td>
-                    <td class="py-2 text-right">
-                      {#if $currency === 'USD'}
-                        {formatUSD(nft.floorPrice * ($treasuryData?.ethPrice || 0))}
-                      {:else}
-                        {formatETH(nft.floorPrice)}
-                      {/if}
-                    </td>
-                    <td class="py-2 text-right font-medium">{formatValue(nft.tokens.length * nft.floorPrice * ($treasuryData?.ethPrice || 0))}</td>
+                    <td class="py-2 text-right">{formatETH(nft.floorPrice)} / {formatUSD(nft.floorPrice * ($treasuryData?.ethPrice || 0))}</td>
+                    <td class="py-2 text-right font-medium">{formatETH(nft.tokens.length * nft.floorPrice)}</td>
+                    <td class="py-2 text-right font-medium">{formatUSD(nft.tokens.length * nft.floorPrice * ($treasuryData?.ethPrice || 0))}</td>
                     <td class="py-2 text-center">
                       <div class="flex gap-2 justify-center">
                         <a
