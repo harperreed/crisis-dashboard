@@ -14,6 +14,7 @@
   $: stablecoinsValue = sum(Object.values($treasuryData?.stablecoins || {}));
   $: tokensValue = sum($treasuryData?.tokens?.map(t => t.balance * t.price) || []);
   $: nftsValue = sum($treasuryData?.nfts?.map(n => n.tokens.length * n.floorPrice * ($treasuryData?.ethPrice || 0)) || []);
+  $: tokensWithValue = $treasuryData?.tokens?.filter(t => t.balance > 0 && (t.balance * t.price) > 0) || [];
 
   function formatValue(value) {
     if ($currency === 'USD') return formatUSD(value);
@@ -76,7 +77,7 @@
               </tr>
             </thead>
             <tbody class="text-gray-700">
-              <tr class="border-b">
+              <tr class="border-b hover:bg-gray-50">
                 <td class="py-2">ETH</td>
                 <td class="py-2 text-right">{formatETH($treasuryData?.ethBalance || 0)}</td>
                 <td class="py-2 text-right">{formatUSD($treasuryData?.ethPrice || 0)}</td>
@@ -84,7 +85,7 @@
               </tr>
               {#if stablecoinsValue > 0}
                 {#each Object.entries($treasuryData?.stablecoins || {}) as [symbol, balance]}
-                  <tr class="border-b">
+                  <tr class="border-b hover:bg-gray-50">
                     <td class="py-2">{symbol}</td>
                     <td class="py-2 text-right">{balance.toFixed(2)}</td>
                     <td class="py-2 text-right">$1.00</td>
@@ -105,12 +106,12 @@
           class:text-gray-900={tokensExpanded}
         >
           <span class="font-medium">
-            {tokensExpanded ? '▼' : '▶'} ERC-20 Tokens ({$treasuryData?.tokens?.length || 0})
+            {tokensExpanded ? '▼' : '▶'} ERC-20 Tokens ({tokensWithValue.length})
           </span>
           <span class="font-semibold">{formatValue(tokensValue)}</span>
         </button>
 
-        {#if $treasuryData?.tokens?.length > 0 && tokensExpanded}
+        {#if tokensWithValue.length > 0 && tokensExpanded}
           <div class="mt-3 overflow-x-auto">
             <table class="w-full text-sm">
               <thead>
@@ -122,7 +123,7 @@
                 </tr>
               </thead>
               <tbody class="text-gray-700">
-                {#each $treasuryData.tokens
+                {#each tokensWithValue
                   .sort((a, b) => (b.balance * b.price) - (a.balance * a.price))
                   .slice(0, 20) as token}
                   <tr class="border-b hover:bg-gray-50">
@@ -138,11 +139,11 @@
                     <td class="py-2 text-right font-medium">{formatValue(token.balance * token.price)}</td>
                   </tr>
                 {/each}
-                {#if $treasuryData.tokens.length > 20}
+                {#if tokensWithValue.length > 20}
                   <tr class="text-gray-500">
-                    <td class="py-2" colspan="3">+{$treasuryData.tokens.length - 20} more tokens</td>
+                    <td class="py-2" colspan="3">+{tokensWithValue.length - 20} more tokens</td>
                     <td class="py-2 text-right font-medium">
-                      {formatValue(sum($treasuryData.tokens.slice(20).map(t => t.balance * t.price)))}
+                      {formatValue(sum(tokensWithValue.slice(20).map(t => t.balance * t.price)))}
                     </td>
                   </tr>
                 {/if}
