@@ -34,6 +34,10 @@
   function getOpenSeaLink(contractAddress, tokenId) {
     return `https://opensea.io/assets/ethereum/${contractAddress}/${tokenId}`;
   }
+
+  function getCoinGeckoLink(contractAddress) {
+    return `https://www.coingecko.com/en/coins/${contractAddress}`;
+  }
 </script>
 
 <section class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
@@ -122,6 +126,7 @@
                   <th class="pb-2 text-right">Price (USD)</th>
                   <th class="pb-2 text-right">ETH Value</th>
                   <th class="pb-2 text-right">USD Value</th>
+                  <th class="pb-2 text-center">Link</th>
                 </tr>
               </thead>
               <tbody class="text-gray-700">
@@ -140,6 +145,16 @@
                     </td>
                     <td class="py-2 text-right font-medium">{formatETH((token.balance * token.price) / ($treasuryData?.ethPrice || 1))}</td>
                     <td class="py-2 text-right font-medium">{formatUSD(token.balance * token.price)}</td>
+                    <td class="py-2 text-center">
+                      <a
+                        href={getCoinGeckoLink(token.contractAddress)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-blue-600 hover:underline text-xs"
+                      >
+                        CoinGecko ↗
+                      </a>
+                    </td>
                   </tr>
                 {/each}
                 {#if tokensWithValue.length > 20}
@@ -151,6 +166,7 @@
                     <td class="py-2 text-right font-medium">
                       {formatUSD(sum(tokensWithValue.slice(20).map(t => t.balance * t.price)))}
                     </td>
+                    <td class="py-2"></td>
                   </tr>
                 {/if}
               </tbody>

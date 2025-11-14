@@ -8,6 +8,7 @@ export const ADDRESSES = {
 };
 
 export const BUY_IN_RATE = 1_000_000; // tokens per 1 ETH
+export const BUY_IN_ETH_PRICE = 2600; // Actual ETH price in June 2021 when most holders bought in
 
 export const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in ms
 
