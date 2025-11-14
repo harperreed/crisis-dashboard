@@ -7,12 +7,12 @@
 
 <div class="flex items-center gap-2">
   {#if $isConnected}
-    <div class="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
-      <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-      <span class="text-sm font-mono text-green-900">{formatAddress($walletAddress)}</span>
+    <div class="flex items-center gap-3 px-4 py-2 bg-emerald-50 border-2 border-emerald-200 rounded-lg shadow-sm">
+      <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+      <span class="text-sm font-mono font-semibold text-emerald-900">{formatAddress($walletAddress)}</span>
       <button
         on:click={disconnectWallet}
-        class="ml-2 text-xs text-green-700 hover:text-green-900 underline"
+        class="ml-1 text-xs text-emerald-700 hover:text-emerald-900 font-medium underline transition-colors"
       >
         Disconnect
       </button>
@@ -21,8 +21,11 @@
     <button
       on:click={connectWallet}
       disabled={$isConnecting}
-      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      class="btn-primary"
     >
+      {#if $isConnecting}
+        <span class="inline-block mr-2">⟳</span>
+      {/if}
       {$isConnecting ? 'Connecting...' : 'Connect Wallet'}
     </button>
   {/if}

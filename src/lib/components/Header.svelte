@@ -17,24 +17,28 @@
   }
 </script>
 
-<header class="border-b border-gray-200 pb-6 mb-8">
-  <div class="flex items-center justify-between">
+<header class="border-b-2 border-slate-200 pb-8 mb-8">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
     <div>
-      <h1>Crisis DAO Treasury Dashboard</h1>
+      <h1 class="mb-2">Crisis DAO Treasury Dashboard</h1>
       {#if $lastUpdated}
-        <p class="text-sm text-gray-500">
+        <p class="text-sm text-slate-500 font-medium">
+          <span class="inline-block w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
           Last updated: {formatTimeAgo($lastUpdated)}
         </p>
       {/if}
     </div>
 
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
       <WalletConnect />
       <button
         on:click={handleRefresh}
         disabled={isRefreshing}
-        class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        class="btn-secondary"
       >
+        {#if isRefreshing}
+          <span class="inline-block mr-2">⟳</span>
+        {/if}
         {isRefreshing ? 'Refreshing...' : 'Refresh'}
       </button>
     </div>

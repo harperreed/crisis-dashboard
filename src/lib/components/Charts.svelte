@@ -182,16 +182,16 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <!-- Asset Type Breakdown -->
-    <div class="bg-white rounded-lg p-6 shadow-sm">
-      <h3 class="text-lg font-semibold text-gray-900 mb-4">Asset Categories</h3>
+    <div class="card p-6">
+      <h3 class="font-semibold text-slate-800 mb-4">Asset Categories</h3>
       <div class="h-64">
         <canvas bind:this={assetTypeCanvas}></canvas>
       </div>
     </div>
 
     <!-- All Assets Breakdown -->
-    <div class="bg-white rounded-lg p-6 shadow-sm">
-      <h3 class="text-lg font-semibold text-gray-900 mb-4">Top Assets</h3>
+    <div class="card p-6">
+      <h3 class="font-semibold text-slate-800 mb-4">Top Assets</h3>
       <div class="h-64">
         <canvas bind:this={allAssetsCanvas}></canvas>
       </div>

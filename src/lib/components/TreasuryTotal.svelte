@@ -26,33 +26,43 @@
   $: formattedTokenPriceUSD = formatTokenPrice(tokenPriceUSD);
 </script>
 
-<section class="bg-gray-50 rounded-lg p-6 mb-8">
-  <div class="flex items-end justify-between">
-    <div class="flex-1">
-      <h2 class="text-gray-600 text-sm font-medium uppercase tracking-wide mb-2">
-        Crisis Token Price
-      </h2>
+<section class="card-gradient mb-8 p-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="space-y-2">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-3">
+        🔥 Crisis Token Price
+      </h3>
 
       {#if $isLoading}
-        <div class="h-12 bg-gray-200 animate-pulse rounded"></div>
+        <div class="h-14 bg-slate-200 animate-pulse rounded-lg"></div>
       {:else}
-        <p class="text-3xl font-bold text-gray-900">
-          {formattedTokenPriceETH} / {formattedTokenPriceUSD}
-        </p>
+        <div class="space-y-1">
+          <p class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+            {formattedTokenPriceUSD}
+          </p>
+          <p class="text-2xl font-semibold text-slate-600">
+            {formattedTokenPriceETH}
+          </p>
+        </div>
       {/if}
     </div>
 
-    <div class="flex-1 text-right">
-      <h2 class="text-gray-600 text-sm font-medium uppercase tracking-wide mb-2">
-        Total Treasury Value
-      </h2>
+    <div class="space-y-2 md:text-right">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-3">
+        💰 Total Treasury Value
+      </h3>
 
       {#if $isLoading}
-        <div class="h-12 bg-gray-200 animate-pulse rounded ml-auto"></div>
+        <div class="h-14 bg-slate-200 animate-pulse rounded-lg md:ml-auto"></div>
       {:else}
-        <p class="text-3xl font-bold text-gray-900">
-          {ethValue} / {usdValue}
-        </p>
+        <div class="space-y-1">
+          <p class="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            {usdValue}
+          </p>
+          <p class="text-2xl font-semibold text-slate-600">
+            {ethValue}
+          </p>
+        </div>
       {/if}
     </div>
   </div>

@@ -67,48 +67,57 @@
 </script>
 
 {#if $isConnected}
-  <section class="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-8">
-    <h2 class="mb-4 text-blue-900">🎯 Your Holdings</h2>
+  <section class="card-gradient mb-8 p-6">
+    <h2 class="mb-6 flex items-center gap-2">
+      <span>🎯 Your Holdings</span>
+    </h2>
 
     {#if isLoading}
-      <div class="h-24 bg-white/50 animate-pulse rounded"></div>
+      <div class="h-32 bg-slate-200 animate-pulse rounded-lg"></div>
     {:else if userBalance > 0}
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Token Balance -->
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-          <p class="text-sm text-gray-600 mb-1">Crisis Tokens</p>
-          <p class="text-2xl font-bold text-gray-900">{formatCompact(userBalance)}</p>
-          <p class="text-xs text-gray-500 mt-1">{formatPercent(sharePercent)} of supply</p>
+        <div class="stat-card p-5">
+          <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">Crisis Tokens</p>
+          <p class="text-3xl font-bold text-slate-900 mb-1">{formatCompact(userBalance)}</p>
+          <div class="badge badge-warning mt-2">
+            {formatPercent(sharePercent)} of supply
+          </div>
         </div>
 
         <!-- Current Value -->
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-          <p class="text-sm text-gray-600 mb-1">Current Value</p>
-          <p class="text-xl font-bold text-gray-900">{formatETH(valueETH)}</p>
-          <p class="text-lg font-semibold text-gray-700">{formatUSD(valueUSD)}</p>
+        <div class="stat-card p-5">
+          <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">Current Value</p>
+          <p class="text-2xl font-bold text-slate-900">{formatETH(valueETH)}</p>
+          <p class="text-xl font-semibold text-slate-600">{formatUSD(valueUSD)}</p>
         </div>
 
         <!-- PnL -->
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-          <p class="text-sm text-gray-600 mb-1">Profit / Loss</p>
-          <p class="text-xl font-bold" class:text-green-600={pnlETH >= 0} class:text-red-600={pnlETH < 0}>
+        <div class="stat-card p-5">
+          <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-2">Profit / Loss</p>
+          <p class="text-2xl font-bold {pnlETH >= 0 ? 'text-emerald-600' : 'text-red-600'}">
             {pnlETH >= 0 ? '+' : ''}{formatETH(pnlETH)}
           </p>
-          <p class="text-lg font-semibold" class:text-green-600={pnlUSD >= 0} class:text-red-600={pnlUSD < 0}>
-            {pnlUSD >= 0 ? '+' : ''}{formatUSD(pnlUSD)} ({pnlPercentUSD >= 0 ? '+' : ''}{formatPercent(pnlPercentUSD)})
+          <p class="text-xl font-semibold {pnlUSD >= 0 ? 'text-emerald-600' : 'text-red-600'}">
+            {pnlUSD >= 0 ? '+' : ''}{formatUSD(pnlUSD)}
           </p>
-          <p class="text-xs text-gray-500 mt-1">
-            Buy-in: {formatETH(buyInETH)} / {formatUSD(buyInUSD)} @ ${BUY_IN_ETH_PRICE.toLocaleString()}/ETH
-          </p>
-          <p class="text-xs text-gray-500">
-            Current: ETH @ ${currentETHPrice.toLocaleString()}/ETH
-          </p>
+          <div class="mt-2 space-y-0.5">
+            <div class="{pnlPercentUSD >= 0 ? 'badge-success' : 'badge-danger'} badge">
+              {pnlPercentUSD >= 0 ? '+' : ''}{formatPercent(pnlPercentUSD)}
+            </div>
+            <p class="text-xs text-slate-500 mt-2">
+              Buy-in: {formatETH(buyInETH)} @ ${BUY_IN_ETH_PRICE.toLocaleString()}/ETH
+            </p>
+            <p class="text-xs text-slate-500">
+              Current: ETH @ ${currentETHPrice.toLocaleString()}
+            </p>
+          </div>
         </div>
       </div>
     {:else}
-      <div class="bg-white rounded-lg p-8 text-center">
-        <p class="text-gray-500">You don't own any Crisis tokens</p>
-        <p class="text-sm text-gray-400 mt-2">Buy-in rate: 1M tokens per 1 ETH</p>
+      <div class="stat-card p-8 text-center">
+        <p class="text-slate-600 text-lg font-medium">You don't own any Crisis tokens</p>
+        <p class="text-sm text-slate-400 mt-2">Buy-in rate: 1M tokens per 1 ETH</p>
       </div>
     {/if}
   </section>

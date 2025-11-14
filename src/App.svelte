@@ -19,11 +19,16 @@
   <Header />
 
   {#if $error}
-    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
-      <p class="text-red-800">⚠️ {$error}</p>
-      <p class="text-sm text-red-600 mt-2">
-        Using cached data or unable to load treasury information.
-      </p>
+    <div class="alert-error mb-8">
+      <div class="flex items-start gap-3">
+        <span class="text-2xl">⚠️</span>
+        <div>
+          <p class="font-semibold">{$error}</p>
+          <p class="text-sm text-red-600 mt-1">
+            Using cached data or unable to load treasury information.
+          </p>
+        </div>
+      </div>
     </div>
   {/if}
 
