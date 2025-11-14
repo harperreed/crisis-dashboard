@@ -84,8 +84,7 @@ async function fetchETHBalances() {
 
 async function fetchBalance(address) {
   if (!config.etherscanApiKey) {
-    console.log('⚠️  No Etherscan API key found, using mock balance');
-    return 10.5; // Mock balance in ETH
+    throw new Error('ETHERSCAN_API_KEY not set. Get one at https://etherscan.io/apis');
   }
   const url = `https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${config.etherscanApiKey}`;
   const response = await fetch(url);
@@ -95,25 +94,42 @@ async function fetchBalance(address) {
 }
 
 async function fetchTokenHolders() {
-  // For now, return mock data
-  // In production, you'd query token contract or use a subgraph
+  if (!config.etherscanApiKey) {
+    throw new Error('ETHERSCAN_API_KEY required for token holder data');
+  }
+
+  // Get total supply
+  const supplyUrl = `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=${config.addresses.governanceToken}&apikey=${config.etherscanApiKey}`;
+  const supplyResponse = await fetch(supplyUrl);
+  const supplyData = await supplyResponse.json();
+  if (supplyData.status !== '1') throw new Error(`Failed to fetch total supply: ${supplyData.message}`);
+  const totalSupply = parseInt(supplyData.result);
+
+  await delay(200);
+
+  // Get token holder list (this returns top 10000 holders)
+  // Note: Free Etherscan API doesn't have a dedicated "get all holders" endpoint
+  // We'll use the token transfer events to build a holder list
+  console.log('⚠️  Note: Token holder fetching requires additional API calls or a subgraph');
+  console.log('⚠️  For now, returning empty holder list. Consider using The Graph or Alchemy for full holder data.');
+
   return {
-    holders: [
-      { address: '0x1234567890123456789012345678901234567890', balance: 5000000 },
-      { address: '0x2345678901234567890123456789012345678901', balance: 3000000 },
-      { address: '0x3456789012345678901234567890123456789012', balance: 2000000 }
-    ],
-    totalSupply: 20000000
+    holders: [],
+    totalSupply
   };
 }
 
 async function fetchNFTs() {
-  // For now, return mock data
-  // In production, query OpenSea or Alchemy for NFT holdings
-  return [
-    { name: 'Bored Ape Yacht Club', quantity: 2, floorPrice: 30 },
-    { name: 'Mutant Ape Yacht Club', quantity: 3, floorPrice: 5 }
-  ];
+  console.log('⚠️  NFT fetching not yet implemented');
+  console.log('⚠️  Requires Alchemy NFT API or Moralis to scan Safe wallets for NFTs');
+  console.log('⚠️  Returning empty NFT list');
+
+  // TODO: Implement NFT fetching
+  // - Use Alchemy getNFTsForOwner API for both Safe addresses
+  // - Get floor prices from OpenSea or Reservoir API
+  // - Return array of: { name, contractAddress, quantity, floorPrice }
+
+  return [];
 }
 
 function calculateTotal(data) {
