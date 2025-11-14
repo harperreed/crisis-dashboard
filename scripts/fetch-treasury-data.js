@@ -46,12 +46,25 @@ async function main() {
     data.ethBalance = await fetchETHBalances();
 
     console.log('✅ Fetching token holders...');
-    const holdersData = await fetchTokenHolders();
-    data.holders = holdersData.holders;
-    data.totalSupply = holdersData.totalSupply;
+    try {
+      const holdersData = await fetchTokenHolders();
+      data.holders = holdersData.holders;
+      data.totalSupply = holdersData.totalSupply;
+    } catch (error) {
+      console.error('⚠️  Failed to fetch token holders:', error.message);
+      console.log('⚠️  Continuing with empty holder list');
+      data.holders = [];
+      data.totalSupply = 0;
+    }
 
     console.log('✅ Fetching NFTs...');
-    data.nfts = await fetchNFTs();
+    try {
+      data.nfts = await fetchNFTs();
+    } catch (error) {
+      console.error('⚠️  Failed to fetch NFTs:', error.message);
+      console.log('⚠️  Continuing with empty NFT list');
+      data.nfts = [];
+    }
 
     // Save to public/data/
     const outputDir = path.join(__dirname, '../public/data');
@@ -62,6 +75,8 @@ async function main() {
 
     console.log(`✅ Treasury data saved to ${outputPath}`);
     console.log(`📊 Total treasury value: $${calculateTotal(data)}`);
+    console.log(`📊 NFT collections: ${data.nfts.length}`);
+    console.log(`📊 Token holders: ${data.holders.length}`);
 
   } catch (error) {
     console.error('❌ Error fetching treasury data:', error);
