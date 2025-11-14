@@ -226,7 +226,7 @@ async function fetchNFTs() {
         name: collectionName,
         contractAddress: contractAddress,
         quantity: 1,
-        floorPrice: 0, // Will be populated in next task
+        floorPrice: 0, // Populated by floor price fetching loop below
       });
     }
   }
