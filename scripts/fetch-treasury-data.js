@@ -86,10 +86,13 @@ async function fetchBalance(address) {
   if (!config.etherscanApiKey) {
     throw new Error('ETHERSCAN_API_KEY not set. Get one at https://etherscan.io/apis');
   }
-  const url = `https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${config.etherscanApiKey}`;
+  const url = `https://api.etherscan.io/v2/api?chainid=1&module=account&action=balance&address=${address}&tag=latest&apikey=${config.etherscanApiKey}`;
   const response = await fetch(url);
   const data = await response.json();
-  if (data.status !== '1') throw new Error(`Etherscan API error: ${data.message}`);
+  if (data.status !== '1') {
+    console.error('Etherscan response:', JSON.stringify(data, null, 2));
+    throw new Error(`Etherscan API error: ${data.message || data.result || 'Unknown error'}`);
+  }
   return parseFloat(data.result) / 1e18; // Convert Wei to ETH
 }
 
@@ -99,7 +102,7 @@ async function fetchTokenHolders() {
   }
 
   // Get total supply
-  const supplyUrl = `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=${config.addresses.governanceToken}&apikey=${config.etherscanApiKey}`;
+  const supplyUrl = `https://api.etherscan.io/v2/api?chainid=1&module=stats&action=tokensupply&contractaddress=${config.addresses.governanceToken}&apikey=${config.etherscanApiKey}`;
   const supplyResponse = await fetch(supplyUrl);
   const supplyData = await supplyResponse.json();
   if (supplyData.status !== '1') throw new Error(`Failed to fetch total supply: ${supplyData.message}`);
