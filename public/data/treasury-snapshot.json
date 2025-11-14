@@ -1,34 +1,1404 @@
 {
-  "timestamp": 1763138965865,
-  "ethBalance": 21,
-  "ethPrice": 3229.02,
+  "timestamp": 1763143322667,
+  "ethBalance": 30.286464216790442,
+  "ethPrice": 3173.36,
   "stablecoins": {},
-  "tokens": [],
-  "nfts": [
+  "tokens": [
     {
-      "name": "Bored Ape Yacht Club",
-      "quantity": 2,
-      "floorPrice": 30
+      "symbol": "DEEPSEEK R1",
+      "name": "DeepSeek R1",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x0043943a2760fbd57f6e9efd46005319b2362640"
     },
     {
-      "name": "Mutant Ape Yacht Club",
-      "quantity": 3,
-      "floorPrice": 5
+      "symbol": "PIKO",
+      "name": "PIKO INU",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x008c5fd107cf62a2982ee934c2f856ebbd340f6f"
+    },
+    {
+      "symbol": "claim at [apepool.org]",
+      "name": "APE/ETH",
+      "balance": 3289,
+      "price": 0,
+      "contractAddress": "0x009e9d89bfaaf0d539450e7b8908703011704993"
+    },
+    {
+      "symbol": "pippin",
+      "name": "Pippin",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x00f00ab579e16bb2b6774487abbc16d98b2ab648"
+    },
+    {
+      "symbol": "mbird.fun",
+      "name": "mbird.fun",
+      "balance": 1800,
+      "price": 0,
+      "contractAddress": "0x0131c9a2fe609f03f6f7a0cf850a417a648c695e"
+    },
+    {
+      "symbol": "NGPU",
+      "name": "NVIDIA GPU",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x018d774dac5e73f2bc02fd31c1dd3b3fe40d48f8"
+    },
+    {
+      "symbol": "VISTA DOGE",
+      "name": "Ethervista Doge",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x040b23a9f4de50ce7856a03ffe2f231a4ac9c69d"
+    },
+    {
+      "symbol": "HELIOS",
+      "name": "Helios DAO",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x04b4af1ae6841713a4b1d37e4b3c2246cd33f2ad"
+    },
+    {
+      "symbol": "FISH AI",
+      "name": "Fish AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x07d739f025f816a56388f01d566f8e08e6c80651"
+    },
+    {
+      "symbol": "Register at ApeWL.io",
+      "name": "Otherside Beta Access",
+      "balance": 10000,
+      "price": 0,
+      "contractAddress": "0x0885c184f7322c91a1b792913f3c67fc4c494a66"
+    },
+    {
+      "symbol": "SCHIZO",
+      "name": "schizo coin",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x08ec645c6026746ccde29c753599352368e1f956"
+    },
+    {
+      "symbol": "Invitation token. Please Visit https://aduni.site and claim rewards.",
+      "name": "aduni.site",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x0951490cec0261f60ff0c42de7f62488cc8313d8"
+    },
+    {
+      "symbol": "TRUTH",
+      "name": "Truth Wallet Coin",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x097e5ce31a0a75f69aa7f90fe2b3460976a332cd"
+    },
+    {
+      "symbol": "KOKO",
+      "name": "KOALA AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x0a0017eb8f5edff082bbd0162034c0e51b323a98"
+    },
+    {
+      "symbol": "BITDOG",
+      "name": "bitdog",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x0a8e08212c13f0737a08b1c4b653196e072a0f82"
+    },
+    {
+      "symbol": "GROK4 AI",
+      "name": "Grok4 AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x0a953979fdcfd82b08c77db29705327bec39ff13"
+    },
+    {
+      "symbol": "ape-otherside.xyz",
+      "name": "ape-otherside.xyz",
+      "balance": 1,
+      "price": 0,
+      "contractAddress": "0x105f74efb328a7f9b843163da4986abe25420bcd"
+    },
+    {
+      "symbol": "DOGES",
+      "name": "DogeSwap",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1073d3349dde71fd3169dabeab4f63be894f8eea"
+    },
+    {
+      "symbol": "TSTE",
+      "name": "Test On ETH",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x13a827ef074e4b389497608b60a02e9337302dcf"
+    },
+    {
+      "symbol": "NVIDIA AI PC",
+      "name": "NVIDIA AI PC",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1495ac869433698ccd2946c1e62d37ba766294a9"
+    },
+    {
+      "symbol": "I LOVE TRUMP",
+      "name": "I LOVE TRUMP",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x14a16a0abc0c00bbc1cf240c14c43dd42697a554"
+    },
+    {
+      "symbol": "vista PEIPEI",
+      "name": "Ethervista PeiPei",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x14a18ef3d09215e4e4cd02c92724b34e9daf588c"
+    },
+    {
+      "symbol": "ANKA",
+      "name": "ANKA",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x14ac092ddcfab34fc4bfb335541073dd3b9809bb"
+    },
+    {
+      "symbol": "GENERATIVE AI",
+      "name": "Generative AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x15b280213acb20c27da1144854923acf6a8c732b"
+    },
+    {
+      "symbol": "WLDFI",
+      "name": "WorldLibertyFi",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1708a7150fe287e3461896a013cdfdac5ade824d"
+    },
+    {
+      "symbol": "NVIDIA AI",
+      "name": "NVIDIA AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x174cd3359c6a4e6b64d2995da4e2e4631379526e"
+    },
+    {
+      "symbol": "MARC AI",
+      "name": "Marc Andereesseen Ai",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x190afa7603195664fccd4fac03c5643a0c6768dc"
+    },
+    {
+      "symbol": "TESLA AI",
+      "name": "Tesla AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x195ec13ef52c30ceb4019a055e7938dafae21b6a"
+    },
+    {
+      "symbol": "DeepSuck",
+      "name": "Deep Suck Coin",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1ad55d24d37259bef0121738ee7ac906016fdc76"
+    },
+    {
+      "symbol": "GYGAX",
+      "name": "Gygax Coin",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1b7353b27bab48370d2485b0c51dc154483527f0"
+    },
+    {
+      "symbol": "OPEN AI",
+      "name": "Open AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1bdf90b9fd1c17146aa26f24cee5094b60b2b660"
+    },
+    {
+      "symbol": "GOLDY",
+      "name": "GOLDY",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1c820c9bd9f7b94a03347ae7a589525dcad53a14"
+    },
+    {
+      "symbol": "KATSU",
+      "name": "KATSU DAO",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1cbbc8ac0f03b55d60040ca05cbf754448d64fde"
+    },
+    {
+      "symbol": "OPCAT",
+      "name": "OPCAT",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1e0b90a376f021eb938ff04fabd2c627c4959fa3"
+    },
+    {
+      "symbol": "AERO",
+      "name": "Aerodrome",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1f186de364a56e741fcb188d37a393d409d08aea"
+    },
+    {
+      "symbol": "GNAI",
+      "name": "GreenNet AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1f2540c9ae2a92efa9be7b104bc921d975966586"
+    },
+    {
+      "symbol": "Ivana Trump",
+      "name": "Ivana Trump",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x1f7b20004ebd7e258b9f45568ce789fc5d2140fb"
+    },
+    {
+      "symbol": "AICC",
+      "name": "Aiccelerate",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x224f8a141dc767ff2bac37a276fb04ae7c1611eb"
+    },
+    {
+      "symbol": "CrypToadzDAO.io",
+      "name": "CrypToadzDAO.io",
+      "balance": 5555,
+      "price": 0,
+      "contractAddress": "0x22ac7b1699abb9466662201145f701aab57577c2"
+    },
+    {
+      "symbol": "Visit LqETH.org to claim rewards",
+      "name": "# LqETH.org",
+      "balance": 1.7,
+      "price": 0,
+      "contractAddress": "0x246f21368af45fb8605ec0d4ac92b81c4e695186"
+    },
+    {
+      "symbol": "SDETHER.COM",
+      "name": "SDETHER.COM",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x2d262c7faa8e03a86d6634bdc6178b3e06cd690b"
+    },
+    {
+      "symbol": "YFED",
+      "name": "YFED.Finance",
+      "balance": 0.00001,
+      "price": 0.00074161,
+      "contractAddress": "0x2dbd330bc9b7f3a822a9173ab52172bdddcace2a"
+    },
+    {
+      "symbol": "TST",
+      "name": "TEST",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x2f375ce83ee85e505150d24e85a1742fd03ca593"
+    },
+    {
+      "symbol": "Matr1X",
+      "name": "Matr1X",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x2fd04fd9210dc6af22f3203088f4967579ae36c7"
+    },
+    {
+      "symbol": "MOMO AI",
+      "name": "Momo AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x3119ec517308ebca80d046b746219c6402582180"
+    },
+    {
+      "symbol": "JUMPER",
+      "name": "Jumper RWA",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x324de8d0357699e0a7ae92ff2501378a7fe12417"
+    },
+    {
+      "symbol": "Ape-Coin.org",
+      "name": "Ape-Coin.org",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x32643a36af662fec05cc3e66a44cec993d7b68ed"
+    },
+    {
+      "symbol": "CZHEEP",
+      "name": "CZHEEP",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x338c1e2b51c4e818765a887584e7041ef9070aef"
+    },
+    {
+      "symbol": "TESLA AI",
+      "name": "tesla AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x33a1ada445dfd27af86ef6b2402d9d02e356cf69"
+    },
+    {
+      "symbol": "WPEPE",
+      "name": "WPEPE",
+      "balance": 0.0001387,
+      "price": 0,
+      "contractAddress": "0x34d0f1cb08d47dc1333657a0a84df2462e806656"
+    },
+    {
+      "symbol": "MOGIMOGI",
+      "name": "MogiMogi",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x35201859917f3d639f4169412d5d0a4daf33a40f"
+    },
+    {
+      "symbol": "MASYA CAT",
+      "name": "Vitalik Masya Cat",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x3682a389bba84f6cd853b15c91b8e8c1a9e5e61d"
+    },
+    {
+      "symbol": "AEROBUD",
+      "name": "AEROBUD",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x37843bc944edbb0477df943d9061d359004a4e70"
+    },
+    {
+      "symbol": "BERA",
+      "name": "BeraChain",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x37a6bbff13319ae0953924663603aa6b28cbba47"
+    },
+    {
+      "symbol": "POCHITA INU",
+      "name": "POCHITA INU",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x37aa98af3103252f111c258f7a995bb94aba887b"
+    },
+    {
+      "symbol": "SOS",
+      "name": "OpenDAO",
+      "balance": 277215808.9753,
+      "price": 1.975e-9,
+      "contractAddress": "0x3b484b82567a09e2588a13d54d032153f0c0aee0"
+    },
+    {
+      "symbol": "AERO",
+      "name": "Aerodrome",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x3c78e3391c47fb9310bdb9085955934e1622442f"
+    },
+    {
+      "symbol": "ALPACA",
+      "name": "Bitcoin Mascot",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x407cdcaef187878b2ec437d2cb97ce10b779718e"
+    },
+    {
+      "symbol": "TUT",
+      "name": "tutportal",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x41cd4ad2d58f251ace2e43038136c2b8d8f1474e"
+    },
+    {
+      "symbol": "CSI888",
+      "name": "csi888",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x43134b79c886dc0320f1eceeac9f678a47074096"
+    },
+    {
+      "symbol": "MIGA",
+      "name": "Make Internet Great Again",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x439fc37d281efc118972fd210e5db4413991404f"
+    },
+    {
+      "symbol": "AiBan",
+      "name": "Ai Comedian",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x44ced3cb1f9b829ad8596b55d4d379528bc843af"
+    },
+    {
+      "symbol": "MOJOPEPE",
+      "name": "Mojo Pepe",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4646898f93eb705ff3f777fbf05fd05c8d4b6bc8"
+    },
+    {
+      "symbol": "Ghibli",
+      "name": "Ghibli",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x46d0fb47b1e91130d53498ebee7a968e7e6599f9"
+    },
+    {
+      "symbol": "rust",
+      "name": "rust",
+      "balance": 0.5,
+      "price": 0,
+      "contractAddress": "0x473bcd6ee71d2ca1d18f8e74cdf75beb4999fa7e"
+    },
+    {
+      "symbol": "Luna Community Refund (claimable at terraluna.finance)",
+      "name": "Luna Community Refund (claimable at terraluna.finance)",
+      "balance": 2500000,
+      "price": 0,
+      "contractAddress": "0x48c8d9b1d6a2bda2827aa1f21326123077bb43dd"
+    },
+    {
+      "symbol": "VENTURA",
+      "name": "VENTURA AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4b443611c2747ddc7a7fcf732c84eacaa64fcce4"
+    },
+    {
+      "symbol": "SIRIUS",
+      "name": "Sirius",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4c14a5346b940b64995cbeedc24deee4db51ae43"
+    },
+    {
+      "symbol": "WLFI",
+      "name": "World Liberty Financial",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4c6c5c7c00e2e26f91ada6e032f729899f796cca"
+    },
+    {
+      "symbol": "APE",
+      "name": "ApeCoin",
+      "balance": 5047,
+      "price": 0.357935,
+      "contractAddress": "0x4d224452801aced8b2f0aebe155379bb5d594381"
+    },
+    {
+      "symbol": "ASTER",
+      "name": "Asterdex",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4d22921215cf37e8d49e2ac6d1f5e9672f63a7c6"
+    },
+    {
+      "symbol": "NVIDIA AI",
+      "name": "NVIDIA AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4d57c67c8bab0fb3a0a0a35b904fbff4e5450521"
+    },
+    {
+      "symbol": "SUNO AI",
+      "name": "Suno AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4e6c80aa486af0ba20943fbc067a5557dbcf5458"
+    },
+    {
+      "symbol": "wPERP",
+      "name": "WYNN PERP",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x4f5521659ccb6a47178c73fb72f483b10adf557b"
+    },
+    {
+      "symbol": "SOM",
+      "name": "Somputer",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x525ff374717aa4dc48d80d8cb468183fdae08f89"
+    },
+    {
+      "symbol": "NOVA",
+      "name": "NovaLiquid",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x52bb5c2950d235a792c43c5fdaea3f6578f72c5f"
+    },
+    {
+      "symbol": "Woman-DAO.io",
+      "name": "Woman-DAO.io",
+      "balance": 5555,
+      "price": 0,
+      "contractAddress": "0x530c0e9e9c738a053b992bab86046530f6e3d002"
+    },
+    {
+      "symbol": "b1nai",
+      "name": "b1nai",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x539d6e693a8487957bf0563980544c7abef5be1f"
+    },
+    {
+      "symbol": "Wally",
+      "name": "Peanuts Brother",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x53dac5b23b3ca9a3c86aff8d0c7110fba72a9783"
+    },
+    {
+      "symbol": "SIF",
+      "name": "Satoshiwifhat",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x55d0c027569318f819e81718e484862e6556766a"
+    },
+    {
+      "symbol": "TESLA OPTIMUS",
+      "name": "Tesla Optimus",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x55d7e0f212155be5cf6b4284a77844c4781efc9f"
+    },
+    {
+      "symbol": "Openx",
+      "name": "OpenxAI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x57b055656460055192c8eaf616f90ab76a32cc20"
+    },
+    {
+      "symbol": "47",
+      "name": "President Trump",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x58932676d6677b88947e48cf495b81974da21dcd"
+    },
+    {
+      "symbol": "VISTA TRUMP",
+      "name": "Ethervista Trump",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x58c4f482fdde2e94055eebf476acfccbe3afe809"
+    },
+    {
+      "symbol": "blacklistETH.com",
+      "name": "Circle USDC BlackList",
+      "balance": 1,
+      "price": 0,
+      "contractAddress": "0x59591675e0c85258a917e80c572131a3c257a953"
+    },
+    {
+      "symbol": "SAFE",
+      "name": "Safe",
+      "balance": 5398.888135267057,
+      "price": 0.169597,
+      "contractAddress": "0x5afe3855358e112b5647b952709e6165e1c1eeee"
+    },
+    {
+      "symbol": "Luna Community Refund (terraluna.finance)",
+      "name": "Luna Community Refund (terraluna.finance)",
+      "balance": 2500000,
+      "price": 0,
+      "contractAddress": "0x5b1f5709eb2337e735aba7eda2cc27ab904801ca"
+    },
+    {
+      "symbol": "NEIRODOG",
+      "name": "NEIRODOG",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5b3efff0fef52200b27cf4d34ff6d9264aaf1460"
+    },
+    {
+      "symbol": "INFLECTION AI",
+      "name": "Inflection AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5bb38f4899797f03141782e9d2130c12769c0ccc"
+    },
+    {
+      "symbol": "Fridon AI",
+      "name": "Fridon AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5be480aa056ec274e5ae970d7a75df0c9620f6f8"
+    },
+    {
+      "symbol": "GBB",
+      "name": "Game Bee",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5c3509b1beb81ac9621aed482a77038ef1fd1f5d"
+    },
+    {
+      "symbol": "GRVT",
+      "name": "GRVT",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5c6ed14e1017cf75c237a4a4b93ce1d2f83eb002"
+    },
+    {
+      "symbol": "CHIZ",
+      "name": "Sewer Rat Social Club CHIZ Token",
+      "balance": 26992,
+      "price": 0.00020945,
+      "contractAddress": "0x5c761c1a21637362374204000e383204d347064c"
+    },
+    {
+      "symbol": "JINPING",
+      "name": "Jinping Coin",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5ca9c0ddb0ba2793d0aa4e6a96954b96540d6b32"
+    },
+    {
+      "symbol": "GOLDEN",
+      "name": "Golden Age",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5cc5ce5fe855a59cdae719c80adf1ae453f70edb"
+    },
+    {
+      "symbol": "XMEME",
+      "name": "X MEME",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5d22c8b4e3c90ca633e1377e6ca280a395fc61c0"
+    },
+    {
+      "symbol": "AMBER",
+      "name": "AMBER",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5d5b12f2bae488e12726ea02663cf5d351ecfcad"
+    },
+    {
+      "symbol": "OscarAI",
+      "name": "OscarAI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x5fba8ea5a559cf5c99ba6dd884ae17c1d621fe5b"
+    },
+    {
+      "symbol": "GNUT",
+      "name": "GIGA PNUT",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x619ef615fc1ef0c9e066b233ddbf50e5a9ad3de4"
+    },
+    {
+      "symbol": "TESLA AI",
+      "name": "Tesla AI",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x635eec65a7ef10dcf96bfe051d8a6e5960efe180"
+    },
+    {
+      "symbol": "INUNOMICS",
+      "name": "inunomics",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0x05badf8a8e7fe5b43fae112108e26f2f663bf1a2"
+    },
+    {
+      "symbol": "Visit StakeEther.net to claim rewards",
+      "name": "# StakeEther.net",
+      "balance": 1.7,
+      "price": 0,
+      "contractAddress": "0x339deb6f0d9ddabb8930fed5eaf0b223a4bb6527"
+    },
+    {
+      "symbol": "Visit website nanoether .org to claim rewards",
+      "name": "Visit website nanoether .org to claim rewards",
+      "balance": 2.7,
+      "price": 0,
+      "contractAddress": "0x6f05f924f6e4d0d663fafde6a7efb3a496f5dc91"
+    },
+    {
+      "symbol": "WETH",
+      "name": "WETH",
+      "balance": 0,
+      "price": 3166.18,
+      "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+    },
+    {
+      "symbol": "ESTHER",
+      "name": "Esther the Wonder Pig",
+      "balance": 0,
+      "price": 0,
+      "contractAddress": "0xcd9594cd25ed2a166362b6f76c523da08c4ef2e5"
+    }
+  ],
+  "nfts": [
+    {
+      "name": "NFT Worlds Genesis Avatars",
+      "contractAddress": "0x05745e72fB8b4a9b51118A168D956760e4a36444",
+      "tokens": [
+        "6918",
+        "6919",
+        "6920",
+        "6921"
+      ],
+      "floorPrice": 0.0557
+    },
+    {
+      "name": "PROOF Collective",
+      "contractAddress": "0x08D7C0242953446436F34b4C78Fe9da38c73668d",
+      "tokens": [
+        "269"
+      ],
+      "floorPrice": 0.26038816
+    },
+    {
+      "name": "Unknown Collection",
+      "contractAddress": "0x09f717f77B5e7f2D2F37604fEC3D0e3D53eB9808",
+      "tokens": [
+        "0",
+        "1"
+      ],
+      "floorPrice": 0.0004444399
+    },
+    {
+      "name": "Bored͏ Ape Yacht Club",
+      "contractAddress": "0x16f3C7E8aaa6fbb448641b0139cB25C48099d2Ad",
+      "tokens": [
+        "994"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "Cryptoadz",
+      "contractAddress": "0x1CB1A5e65610AEFF2551A50f76a87a7d3fB649C6",
+      "tokens": [
+        "5879"
+      ],
+      "floorPrice": 0.3966043798
+    },
+    {
+      "name": "MoonCatLootprint",
+      "contractAddress": "0x1e9385eE28c5C7d33F3472f732Fb08CE3ceBce1F",
+      "tokens": [
+        "14334",
+        "15022",
+        "15890",
+        "16409",
+        "20331"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "CryptoUnicorn",
+      "contractAddress": "0x21574D99DfFA1410f8E27526994643b7A31a5130",
+      "tokens": [
+        "272"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "Unknown Collection",
+      "contractAddress": "0x22c36BfdCef207F9c0CC941936eff94D4246d14A",
+      "tokens": [
+        "0",
+        "1"
+      ],
+      "floorPrice": 1.68995
+    },
+    {
+      "name": "V1 Cryptopunks (Wrapped)",
+      "contractAddress": "0x282BDD42f4eb70e7A9D9F40c8fEA0825B7f68C5D",
+      "tokens": [
+        "5703"
+      ],
+      "floorPrice": 1.493999
+    },
+    {
+      "name": "Otherdeed",
+      "contractAddress": "0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258",
+      "tokens": [
+        "8313"
+      ],
+      "floorPrice": 0.11984899
+    },
+    {
+      "name": "0N1 Gear",
+      "contractAddress": "0x3a291C60e44cd3Cad75980B74866233d4b286007",
+      "tokens": [
+        "2658",
+        "5988",
+        "6501",
+        "7146",
+        "7274"
+      ],
+      "floorPrice": 0.00186
+    },
+    {
+      "name": "0N1 Force",
+      "contractAddress": "0x3bf2922f4520a8BA0c2eFC3D2a1539678DaD5e9D",
+      "tokens": [
+        "2658",
+        "5988",
+        "6501"
+      ],
+      "floorPrice": 0.149998
+    },
+    {
+      "name": "Deebies",
+      "contractAddress": "0x400E2073B4Ac13D6f11c15697DF7Fc609dB93809",
+      "tokens": [
+        "1055",
+        "1056",
+        "1058",
+        "1059",
+        "1060",
+        "1061",
+        "1062",
+        "1063",
+        "1064",
+        "1065"
+      ],
+      "floorPrice": 0.002899
+    },
+    {
+      "name": "The Etherants Original",
+      "contractAddress": "0x4d9AD99d37344fF5c9616A50E0CDFE25cbBD04e5",
+      "tokens": [
+        "3"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "The Etherants Originals",
+      "contractAddress": "0x52011E2F967D44403Da2468935fAD6EE183A52d8",
+      "tokens": [
+        "3"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "CryptoUnicorn",
+      "contractAddress": "0x5355d427C724Ab1B11C71bc3FF826586Cc3A4a13",
+      "tokens": [
+        "1004"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "Gray Moon Birds Victorian Pass Collection",
+      "contractAddress": "0x53c8961874cdeC8bC600632082B1fDf0297B234D",
+      "tokens": [
+        "241"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "Unknown Collection",
+      "contractAddress": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+      "tokens": [
+        "61881546349406519546337372253975756435181365301509764388443552453272123766257"
+      ],
+      "floorPrice": 0.00009
+    },
+    {
+      "name": "PROOF Artifacts",
+      "contractAddress": "0x5987CB4f9DB9a1765FD3F4A824D585EC01314dbe",
+      "tokens": [
+        "1"
+      ],
+      "floorPrice": 0.00589997999998
+    },
+    {
+      "name": "0N1 Frame",
+      "contractAddress": "0x6CfC9Ca8DA1D69719161CCc0ba4CFA95d336f11D",
+      "tokens": [
+        "2658",
+        "5988",
+        "6501"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "DoodIes",
+      "contractAddress": "0x74dA81D51593f8Bc940a5edBed2D38B3C5D348a5",
+      "tokens": [
+        "343"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "SewerPass",
+      "contractAddress": "0x764AeebcF425d56800eF2c84F2578689415a2DAa",
+      "tokens": [
+        "16550"
+      ],
+      "floorPrice": 0.0019
+    },
+    {
+      "name": "Lazy Lions",
+      "contractAddress": "0x8943C7bAC1914C9A7ABa750Bf2B6B09Fd21037E0",
+      "tokens": [
+        "5712",
+        "6282"
+      ],
+      "floorPrice": 0.033635
+    },
+    {
+      "name": "GradisArt",
+      "contractAddress": "0x8F6eb1DDdee2a19D52558f7fAC5C2BB0cd39F5ae",
+      "tokens": [
+        "258"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "the goblinstown collection",
+      "contractAddress": "0x9b1990f6f1ca1cF99a5a45d411FEFb9C67DDb8AA",
+      "tokens": [
+        "104"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "The Good Remix! Club",
+      "contractAddress": "0xAA0222323C7A3F0756c11de7CF0c1D33226eCea3",
+      "tokens": [
+        "293"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "Chill City NFT Collectibles",
+      "contractAddress": "0xB209FBeeDbB907C452D15d9a54C51E99C4f901Cf",
+      "tokens": [
+        "52",
+        "53"
+      ],
+      "floorPrice": 0.05
+    },
+    {
+      "name": "BoredApeYachtClub",
+      "contractAddress": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "tokens": [
+        "8313"
+      ],
+      "floorPrice": 6.27
+    },
+    {
+      "name": "0N1 Comics",
+      "contractAddress": "0xBE9eac1cE0D844fC120Ca1b3a921De483e8c4A05",
+      "tokens": [
+        "2658",
+        "5988",
+        "6501"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "Acclimated​MoonCats",
+      "contractAddress": "0xc3f733ca98E0daD0386979Eb96fb1722A1A05E69",
+      "tokens": [
+        "14334",
+        "15022",
+        "15890",
+        "16409",
+        "20331"
+      ],
+      "floorPrice": 0.13399999990000022
+    },
+    {
+      "name": "othersoil.xyz Mint Pass",
+      "contractAddress": "0xcbF51C5c72Fe7B7E9140a93D10475C4862dbb8a8",
+      "tokens": [
+        "6298"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "GalacticFloppyDisk",
+      "contractAddress": "0xdD0D63220265927b29646Cb7D4684D5Fa6dF4CB8",
+      "tokens": [
+        "710"
+      ],
+      "floorPrice": 0.0049
+    },
+    {
+      "name": "World Of Women",
+      "contractAddress": "0xe785E82358879F061BC3dcAC6f0444462D4b5330",
+      "tokens": [
+        "1226",
+        "2614"
+      ],
+      "floorPrice": 0.19361197779999811
+    },
+    {
+      "name": "GutterCatGang",
+      "contractAddress": "0xE79CCE05DE11f9f1421aa5ca20dB48092da10B6c",
+      "tokens": [
+        "509"
+      ],
+      "floorPrice": 0
+    },
+    {
+      "name": "World Of Women Galaxy",
+      "contractAddress": "0xf61F24c2d93bF2dE187546B14425BF631F28d6dC",
+      "tokens": [
+        "1226",
+        "2614"
+      ],
+      "floorPrice": 0.018899
+    },
+    {
+      "name": "FoodmaskuDelectables",
+      "contractAddress": "0x3d0f31395b0238093A37663C22Ac98Aa4AC71f0b",
+      "tokens": [
+        "1286",
+        "1287",
+        "1288"
+      ],
+      "floorPrice": 0.0187
     }
   ],
   "holders": [
     {
-      "address": "0x1234567890123456789012345678901234567890",
-      "balance": 5000000
+      "address": "0x2f61cd8f256ef199ce0cd3094bdce77f1b7e91f5",
+      "balance": 999918265669.0002,
+      "percentage": 99.99182656690002
     },
     {
-      "address": "0x2345678901234567890123456789012345678901",
-      "balance": 3000000
+      "address": "0xe7e84204b7e180454e5c40d0e04d346214a83f85",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
     },
     {
-      "address": "0x3456789012345678901234567890123456789012",
-      "balance": 2000000
+      "address": "0x4558e88c5a972244c995ae4dd95a84fc790355f9",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x961aa96febee5465149a0787b03bfa14d8e9033f",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0xecaa643997033b1ba605d32748cfe9bdad141880",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x3a958ef7d3dc7a0f7c98ba139359ee5c30253fbf",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x37990c085180528ef52f55c7945ebbc5bc040e50",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0xa62f4152954c3cfbe762932512db35f40517507b",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0xe66a9a013296c5d8b15ce092080651fcb6bca5b9",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x95f978fcdcda9bdf7bdb1eef42fc4a4c199828cb",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x58f43fa86ca2fe318dda7977391554a01133305b",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x8ea650d831eaca6b84360fa9db45f481e0622a1f",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x005b661b34cb13e4023a26048eb6440a9e1d611b",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x476f83d33639f468d2af660d224f9c0d2d6a1701",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x21e4c2c6691b79b108756b285510cce8a729d25a",
+      "balance": 3000000,
+      "percentage": 0.00030000000000000003
+    },
+    {
+      "address": "0x7fb6f52996ba02884fd4cd136bb2af3d8909c56c",
+      "balance": 2000000,
+      "percentage": 0.00019999999999999998
+    },
+    {
+      "address": "0xc1acf33b71967ef68ea06e4008fb7ca0eecd27ed",
+      "balance": 2000000,
+      "percentage": 0.00019999999999999998
+    },
+    {
+      "address": "0xc93c7f71581dfeaab59bed908888dac5689f312a",
+      "balance": 1500000,
+      "percentage": 0.00015000000000000001
+    },
+    {
+      "address": "0xe3f4f3ad70c1190ec480554bbc3ed30285ae0610",
+      "balance": 1500000,
+      "percentage": 0.00015000000000000001
+    },
+    {
+      "address": "0xf553f58ad57368d70c91d3a3117a00f005545ed7",
+      "balance": 1500000,
+      "percentage": 0.00015000000000000001
+    },
+    {
+      "address": "0xa1dfe1d2842bb5ad28b770eb88a9254d26488764",
+      "balance": 1500000,
+      "percentage": 0.00015000000000000001
+    },
+    {
+      "address": "0xf0e1f132bf121a10080bd8e73f85e9c091525b34",
+      "balance": 1500000,
+      "percentage": 0.00015000000000000001
+    },
+    {
+      "address": "0xbd277d616f747ec7a2bdc6cce9d8fb69d5372453",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x23b14aa79c10f36ea7ec80ab624b6ea042ba3497",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x8938c6507d9739b0f6b0b49cfdef2d8377470ab0",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x1c467666f27e9643561125a249dab04be6537bd2",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x63fa7d321333ce697444bbea588de7c3f9812d7f",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x9d3ea9e9adde71141f4534db3b9b80df3d03ee5f",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0xeb2629a2734e272bcc07bda959863f316f4bd4cf",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x2e25c3b15d3cd8059d009fc90537bc78163f4df5",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x13783136336932a54ae5a5939b237f78ae369036",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0xb6a4bf1c99314c54c62ce2f7643e6b7ebe0fe179",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0xe11b9accb982800e0b2a76bdd135836d393f92e9",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x5d57a0f243615177fd26427b323a1fbec433b865",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x939120ec81c23495ec4fefd01ada0baa1ced095a",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x3a12479fdb2f692e399224464b1484dd78947918",
+      "balance": 1000000,
+      "percentage": 0.00009999999999999999
+    },
+    {
+      "address": "0x20fcb185ac2d5f9795779e8cc6c0ec37f97c7a8c",
+      "balance": 950000,
+      "percentage": 0.000095
+    },
+    {
+      "address": "0xcb50ad7d82021bd6b1ec3a9cc5e6fbb9398f5c59",
+      "balance": 744400,
+      "percentage": 0.00007444
+    },
+    {
+      "address": "0xd9c4475e2dd89a9a0ad0c1e9a1e1bb28df7ba298",
+      "balance": 666667,
+      "percentage": 0.00006666670000000001
+    },
+    {
+      "address": "0x0cf9db77ce49da0838834d505566eb077dbe2475",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x0a4cf822777be3558233c2420978eb40d0f85d88",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x77492fcf153f992cf3fe2b832e83abe56d8f8944",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x72058f7295d97e2d98e2d1d198ac7da4efe26764",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x5328de364006f6e2be8ea2c4d28e3dd349b3d257",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x0bf1f46866bcef673aa8dc080a2409ff73b6718d",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x5d334bf9d32c6bf5655de7479b34fa0d0c44bff3",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x5d9b59ef830fecdec7cbf5128cd288ff7e66da98",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x2b0d29ffa81fa6bf35d31db7c3bc11a5913b45ef",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x0090720fed7fed66ed658118b7b3bb0189d3a495",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x1212d8f2a7fd2cf4ce717053193b2d90660fe646",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0xdf318c14c0c335798ac7f7601503b75f8fcb873d",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x7bc17dde3ad2bb060ceba0c55227f5d340bc3fbf",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x9a188c9b9fa408d47a97b90f5973170f81d2c196",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0xdb6c917a221b2a44150e5cf9b7c511f5e8483cad",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x294af33e5590725f684de80d88e72009b1ab6f76",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x781b0b5741f0c74e9657237c379e07023da59886",
+      "balance": 500000,
+      "percentage": 0.000049999999999999996
+    },
+    {
+      "address": "0x2d852eadb401df5700a2d964883e6e7ed2df5bf6",
+      "balance": 373267,
+      "percentage": 0.000037326699999999996
+    },
+    {
+      "address": "0x5348b43345d487ed68ae333ce8abc113a2a55280",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0x8663dc02812630b5aebad64da5285a7bd06fdab3",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0xfd85191d21dd299e4ad7c77ae2970f704b43072a",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0xdb433d447b8389d0614bf4f7d479f2436f002d87",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0x4e2e1325e08366079b29c7c9fcc1fe0140f89af4",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0x8b57627f69d2df512953fb54fe3e75142cf531de",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0x1867f24164d92684c71620c40aefbcb519d4ebe5",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0x29059f184faa0a32c83971c8951829c8be27d3f3",
+      "balance": 333333,
+      "percentage": 0.0000333333
+    },
+    {
+      "address": "0xd8341ccdbd5367c7fdfbef6ac0fc1c2a74ca9a96",
+      "balance": 333333,
+      "percentage": 0.0000333333
     }
   ],
-  "totalSupply": 20000000
+  "totalSupply": 1000000000000
 }

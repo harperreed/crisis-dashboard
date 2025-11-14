@@ -103,6 +103,48 @@ async function fetchETHPrice() {
   return data.ethereum.usd;
 }
 
+async function fetchTokenPrices(contractAddresses) {
+  if (contractAddresses.length === 0) return {};
+
+  try {
+    // CoinGecko's free API allows up to 30 contract addresses per request
+    // Split into batches if needed
+    const batchSize = 30;
+    const batches = [];
+
+    for (let i = 0; i < contractAddresses.length; i += batchSize) {
+      batches.push(contractAddresses.slice(i, i + batchSize));
+    }
+
+    const allPrices = {};
+
+    for (const batch of batches) {
+      const addresses = batch.join(',');
+      const url = `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=${addresses}&vs_currencies=usd`;
+
+      const headers = {};
+      if (config.coingeckoApiKey) {
+        headers['x-cg-demo-api-key'] = config.coingeckoApiKey;
+      }
+
+      const response = await fetch(url, { headers });
+      const data = await response.json();
+
+      Object.assign(allPrices, data);
+
+      // Rate limiting for free tier
+      if (batches.length > 1) {
+        await delay(1000); // 1 second between batches for free tier
+      }
+    }
+
+    return allPrices;
+  } catch (error) {
+    console.log(`    ⚠️  Failed to fetch token prices from CoinGecko: ${error.message}`);
+    return {};
+  }
+}
+
 async function fetchETHBalances() {
   // Fetch balance for both Safes
   const mainBalance = await fetchBalance(config.addresses.mainSafe);
@@ -173,7 +215,7 @@ async function fetchERC20Tokens() {
   const stablecoins = {};
 
   console.log(`  → Found ${allTokenBalances.size} unique ERC-20 tokens`);
-  console.log('  → Fetching token metadata and prices...');
+  console.log('  → Fetching token metadata...');
 
   for (const [address, rawBalance] of allTokenBalances.entries()) {
     try {
@@ -190,12 +232,11 @@ async function fetchERC20Tokens() {
       if (stablecoinAddresses[address]) {
         stablecoins[stablecoinAddresses[address]] = balance;
       } else {
-        // For other tokens, try to get price (simplified - would need CoinGecko integration for real prices)
         tokens.push({
           symbol,
           name,
           balance,
-          price: 0, // TODO: Integrate CoinGecko or similar for token prices
+          price: 0, // Will be populated by price fetching
           contractAddress: address
         });
       }
@@ -205,6 +246,23 @@ async function fetchERC20Tokens() {
   }
 
   console.log(`  ✓ Found ${Object.keys(stablecoins).length} stablecoins and ${tokens.length} other tokens`);
+
+  // Fetch prices for non-stablecoin tokens
+  if (tokens.length > 0) {
+    console.log('  → Fetching token prices from CoinGecko...');
+    const prices = await fetchTokenPrices(tokens.map(t => t.contractAddress));
+
+    // Update token prices
+    for (const token of tokens) {
+      const priceData = prices[token.contractAddress.toLowerCase()];
+      if (priceData && priceData.usd) {
+        token.price = priceData.usd;
+      }
+    }
+
+    const tokensWithPrices = tokens.filter(t => t.price > 0).length;
+    console.log(`  ✓ Found prices for ${tokensWithPrices}/${tokens.length} tokens`);
+  }
 
   return { tokens, stablecoins };
 }
