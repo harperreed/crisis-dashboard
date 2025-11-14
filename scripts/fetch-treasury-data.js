@@ -6,6 +6,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
+import { Alchemy, Network } from 'alchemy-sdk';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -124,16 +125,61 @@ async function fetchTokenHolders() {
 }
 
 async function fetchNFTs() {
-  console.log('⚠️  NFT fetching not yet implemented');
-  console.log('⚠️  Requires Alchemy NFT API or Moralis to scan Safe wallets for NFTs');
-  console.log('⚠️  Returning empty NFT list');
+  if (!config.alchemyApiKey) {
+    console.log('⚠️  ALCHEMY_API_KEY not set. Skipping NFT fetching.');
+    console.log('⚠️  Get a free API key at https://www.alchemy.com/');
+    return [];
+  }
 
-  // TODO: Implement NFT fetching
-  // - Use Alchemy getNFTsForOwner API for both Safe addresses
-  // - Get floor prices from OpenSea or Reservoir API
-  // - Return array of: { name, contractAddress, quantity, floorPrice }
+  console.log('Fetching NFTs from Alchemy...');
 
-  return [];
+  const alchemy = new Alchemy({
+    apiKey: config.alchemyApiKey,
+    network: Network.ETH_MAINNET,
+  });
+
+  const nfts = [];
+
+  // Fetch NFTs for main Safe
+  console.log('  → Fetching NFTs for Main Safe...');
+  const mainNFTs = await alchemy.nft.getNftsForOwner(config.addresses.mainSafe, {
+    excludeFilters: ['SPAM'],
+  });
+
+  await delay(200);
+
+  // Fetch NFTs for hot Safe
+  console.log('  → Fetching NFTs for Hot Safe...');
+  const hotNFTs = await alchemy.nft.getNftsForOwner(config.addresses.hotSafe, {
+    excludeFilters: ['SPAM'],
+  });
+
+  // Group by collection and aggregate quantities
+  const collections = new Map();
+
+  for (const nft of [...mainNFTs.ownedNfts, ...hotNFTs.ownedNfts]) {
+    const contractAddress = nft.contract.address;
+    const collectionName = nft.contract.name || nft.contract.symbol || 'Unknown Collection';
+
+    if (collections.has(contractAddress)) {
+      collections.get(contractAddress).quantity += 1;
+    } else {
+      collections.set(contractAddress, {
+        name: collectionName,
+        contractAddress: contractAddress,
+        quantity: 1,
+        floorPrice: 0, // Will be populated in next task
+      });
+    }
+  }
+
+  // Convert map to array
+  for (const collection of collections.values()) {
+    nfts.push(collection);
+  }
+
+  console.log(`  ✓ Found ${nfts.length} NFT collections`);
+  return nfts;
 }
 
 function calculateTotal(data) {
