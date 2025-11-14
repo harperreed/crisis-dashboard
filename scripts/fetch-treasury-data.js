@@ -173,6 +173,23 @@ async function fetchNFTs() {
     }
   }
 
+  // Fetch floor prices for each collection
+  console.log('  → Fetching floor prices...');
+  for (const [contractAddress, collection] of collections.entries()) {
+    try {
+      const floorPrice = await alchemy.nft.getFloorPrice(contractAddress);
+      if (floorPrice && floorPrice.openSea) {
+        collection.floorPrice = floorPrice.openSea.floorPrice || 0;
+      } else if (floorPrice && floorPrice.looksRare) {
+        collection.floorPrice = floorPrice.looksRare.floorPrice || 0;
+      }
+      await delay(100); // Rate limiting
+    } catch (error) {
+      console.log(`    ⚠️  Could not fetch floor price for ${collection.name}: ${error.message}`);
+      collection.floorPrice = 0;
+    }
+  }
+
   // Convert map to array
   for (const collection of collections.values()) {
     nfts.push(collection);
