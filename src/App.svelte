@@ -1,7 +1,7 @@
 <!-- ABOUTME: Root application component, main dashboard container -->
 <!-- ABOUTME: Orchestrates all child components and loads initial data -->
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import Header from './lib/components/Header.svelte';
   import TreasuryTotal from './lib/components/TreasuryTotal.svelte';
   import UserHoldings from './lib/components/UserHoldings.svelte';
@@ -10,8 +10,45 @@
   import HoldersList from './lib/components/HoldersList.svelte';
   import { loadTreasuryData, error } from './lib/stores/treasury.js';
 
+  let midnightTimer = null;
+
+  // Calculate milliseconds until next midnight
+  function getMillisecondsUntilMidnight() {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    return tomorrow.getTime() - now.getTime();
+  }
+
+  // Schedule refresh at midnight
+  function scheduleMidnightRefresh() {
+    const msUntilMidnight = getMillisecondsUntilMidnight();
+
+    midnightTimer = setTimeout(async () => {
+      console.log('Midnight refresh triggered');
+      await loadTreasuryData();
+      // Schedule the next midnight refresh
+      scheduleMidnightRefresh();
+    }, msUntilMidnight);
+
+    console.log(`Next treasury refresh scheduled in ${Math.round(msUntilMidnight / 1000 / 60)} minutes`);
+  }
+
   onMount(() => {
+    // Load data immediately
     loadTreasuryData();
+
+    // Schedule automatic midnight refresh
+    scheduleMidnightRefresh();
+  });
+
+  onDestroy(() => {
+    // Clean up timer on component unmount
+    if (midnightTimer) {
+      clearTimeout(midnightTimer);
+      midnightTimer = null;
+    }
   });
 </script>
 
