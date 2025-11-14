@@ -17,7 +17,7 @@ export const totalTreasuryValue = derived(treasuryData, $data => {
   const ethValue = $data.ethBalance * $data.ethPrice;
   const stablecoinsValue = sum(Object.values($data.stablecoins || {}));
   const tokensValue = sum($data.tokens?.map(t => t.balance * t.price) || []);
-  const nftsValue = sum($data.nfts?.map(n => n.quantity * n.floorPrice * $data.ethPrice) || []);
+  const nftsValue = sum($data.nfts?.map(n => n.tokens.length * n.floorPrice * $data.ethPrice) || []);
 
   return ethValue + stablecoinsValue + tokensValue + nftsValue;
 });
