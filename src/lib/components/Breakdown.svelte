@@ -12,7 +12,7 @@
   $: ethValue = ($treasuryData?.ethBalance || 0) * ($treasuryData?.ethPrice || 0);
   $: stablecoinsValue = sum(Object.values($treasuryData?.stablecoins || {}));
   $: tokensValue = sum($treasuryData?.tokens?.map(t => t.balance * t.price) || []);
-  $: nftsValue = sum($treasuryData?.nfts?.map(n => n.quantity * n.floorPrice * ($treasuryData?.ethPrice || 0)) || []);
+  $: nftsValue = sum($treasuryData?.nfts?.map(n => n.tokens.length * n.floorPrice * ($treasuryData?.ethPrice || 0)) || []);
 
   function formatValue(value) {
     if ($currency === 'USD') return formatUSD(value);
@@ -27,12 +27,12 @@
     ethExpanded = !ethExpanded;
   }
 
-  function getEtherscanLink(contractAddress) {
-    return `https://etherscan.io/address/${contractAddress}`;
+  function getEtherscanLink(contractAddress, tokenId) {
+    return `https://etherscan.io/token/${contractAddress}?a=${tokenId}`;
   }
 
-  function getOpenSeaLink(contractAddress) {
-    return `https://opensea.io/assets/ethereum/${contractAddress}`;
+  function getOpenSeaLink(contractAddress, tokenId) {
+    return `https://opensea.io/assets/ethereum/${contractAddress}/${tokenId}`;
   }
 </script>
 
@@ -102,12 +102,12 @@
           {#each $treasuryData.nfts as nft}
             <div class="space-y-1">
               <div class="flex justify-between text-sm">
-                <span>• {nft.name}: {nft.quantity} @ {formatETH(nft.floorPrice)}</span>
-                <span class="font-medium">{formatValue(nft.quantity * nft.floorPrice * ($treasuryData?.ethPrice || 0))}</span>
+                <span>• {nft.name}: {nft.tokens.length} @ {formatETH(nft.floorPrice)}</span>
+                <span class="font-medium">{formatValue(nft.tokens.length * nft.floorPrice * ($treasuryData?.ethPrice || 0))}</span>
               </div>
               <div class="flex gap-3 text-xs text-blue-600 pl-4">
                 <a
-                  href={getEtherscanLink(nft.contractAddress)}
+                  href={getEtherscanLink(nft.contractAddress, nft.tokens[0])}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="hover:underline"
@@ -115,7 +115,7 @@
                   Etherscan ↗
                 </a>
                 <a
-                  href={getOpenSeaLink(nft.contractAddress)}
+                  href={getOpenSeaLink(nft.contractAddress, nft.tokens[0])}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="hover:underline"

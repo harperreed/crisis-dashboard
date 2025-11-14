@@ -212,20 +212,21 @@ async function fetchNFTs() {
     excludeFilters: ['SPAM'],
   });
 
-  // Group by collection and aggregate quantities
+  // Group by collection and store individual tokens
   const collections = new Map();
 
   for (const nft of [...mainNFTs.ownedNfts, ...hotNFTs.ownedNfts]) {
     const contractAddress = nft.contract.address;
     const collectionName = nft.contract.name || nft.contract.symbol || 'Unknown Collection';
+    const tokenId = nft.tokenId;
 
     if (collections.has(contractAddress)) {
-      collections.get(contractAddress).quantity += 1;
+      collections.get(contractAddress).tokens.push(tokenId);
     } else {
       collections.set(contractAddress, {
         name: collectionName,
         contractAddress: contractAddress,
-        quantity: 1,
+        tokens: [tokenId],
         floorPrice: 0, // Populated by floor price fetching loop below
       });
     }
@@ -259,7 +260,7 @@ async function fetchNFTs() {
 
 function calculateTotal(data) {
   const ethValue = data.ethBalance * data.ethPrice;
-  const nftsValue = data.nfts.reduce((sum, nft) => sum + (nft.quantity * nft.floorPrice * data.ethPrice), 0);
+  const nftsValue = data.nfts.reduce((sum, nft) => sum + (nft.tokens.length * nft.floorPrice * data.ethPrice), 0);
   return (ethValue + nftsValue).toFixed(0);
 }
 
