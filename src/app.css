@@ -1,0 +1,23 @@
+/* ABOUTME: Main stylesheet with Tailwind directives and global styles */
+/* ABOUTME: Defines base typography and spacing for clean minimal design */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+
+  h1 {
+    @apply text-3xl font-bold mb-4;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold mb-3;
+  }
+
+  h3 {
+    @apply text-xl font-semibold mb-2;
+  }
+}
