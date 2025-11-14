@@ -1,103 +1,567 @@
-/* ABOUTME: Main stylesheet with Tailwind directives and global styles */
-/* ABOUTME: Crisis-themed design with emergency colors and modern components */
+/* ABOUTME: Main stylesheet - Emergency Financial Broadcast aesthetic */
+/* ABOUTME: Bold crisis-themed design combining Art Deco finance with emergency alert systems */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --crisis-red: #DC2626;
+    --crisis-red-dark: #991B1B;
+    --crisis-red-darker: #7F1D1D;
+    --warning-yellow: #FCD34D;
+    --warning-gold: #F59E0B;
+    --industrial-black: #0F172A;
+    --industrial-slate: #1E293B;
+    --paper-cream: #FFFBEB;
+    --paper-yellow: #FEF3C7;
+    --emergency-orange: #EA580C;
+  }
+
   body {
-    @apply bg-gradient-to-br from-slate-50 via-white to-slate-50 text-slate-900 antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    @apply antialiased;
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+    color: #F8FAFC;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Dramatic diagonal warning stripe background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 80px,
+      rgba(234, 88, 12, 0.03) 80px,
+      rgba(234, 88, 12, 0.03) 160px
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: stripe-drift 60s linear infinite;
+  }
+
+  /* Subtle scan line effect */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.02) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
+    animation: scanline 10s linear infinite;
   }
 
   h1 {
-    @apply text-4xl font-bold mb-4 bg-gradient-to-r from-red-600 via-orange-600 to-red-600 bg-clip-text text-transparent;
+    font-family: 'Bebas Neue', sans-serif;
+    @apply text-7xl font-bold mb-6 tracking-wider uppercase;
+    background: linear-gradient(
+      135deg,
+      var(--crisis-red) 0%,
+      var(--warning-gold) 50%,
+      var(--crisis-red) 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(220, 38, 38, 0.3);
+    animation: gradient-shift 8s ease infinite;
+    letter-spacing: 0.1em;
+    position: relative;
+  }
+
+  /* Emergency underline effect for h1 */
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--crisis-red),
+      var(--crisis-red) 10px,
+      var(--warning-yellow) 10px,
+      var(--warning-yellow) 20px
+    );
+    opacity: 0.8;
+    animation: hazard-pulse 2s ease-in-out infinite;
   }
 
   h2 {
-    @apply text-2xl font-semibold mb-3 text-slate-800;
+    font-family: 'Bebas Neue', sans-serif;
+    @apply text-3xl font-bold mb-4 tracking-wide uppercase;
+    color: var(--warning-gold);
+    text-shadow: 0 2px 20px rgba(245, 158, 11, 0.4);
+    letter-spacing: 0.15em;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  /* Warning marker for h2 */
+  h2::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--crisis-red);
+    animation: blink-marker 1.5s ease-in-out infinite;
   }
 
   h3 {
-    @apply text-lg font-semibold mb-2 text-slate-700;
+    font-family: 'Work Sans', sans-serif;
+    @apply text-xl font-bold mb-3 uppercase tracking-wider;
+    color: #FCD34D;
   }
 }
 
 @layer components {
+  /* Main card with dramatic industrial aesthetic */
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-slate-200/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300;
+    @apply rounded-none border-4 backdrop-blur-sm transition-all duration-500;
+    background: linear-gradient(
+      135deg,
+      rgba(30, 41, 59, 0.95) 0%,
+      rgba(15, 23, 42, 0.98) 100%
+    );
+    border-color: var(--crisis-red);
+    box-shadow:
+      0 0 0 1px rgba(220, 38, 38, 0.3),
+      0 10px 40px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 0 60px rgba(220, 38, 38, 0.1);
+    position: relative;
+    animation: card-entry 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
   }
 
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--warning-gold),
+      transparent
+    );
+    opacity: 0.6;
+  }
+
+  .card:hover {
+    border-color: var(--warning-gold);
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 1px rgba(245, 158, 11, 0.4),
+      0 20px 60px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 80px rgba(245, 158, 11, 0.2);
+  }
+
+  /* Gradient variant with warning aesthetic */
   .card-gradient {
-    @apply bg-gradient-to-br from-white via-white to-slate-50/30 rounded-xl shadow-lg border border-slate-200/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300;
+    @apply card;
+    background: linear-gradient(
+      135deg,
+      rgba(30, 41, 59, 0.95) 0%,
+      rgba(127, 29, 29, 0.3) 50%,
+      rgba(15, 23, 42, 0.98) 100%
+    );
+    border-color: var(--emergency-orange);
   }
 
+  /* Stat card with industrial data display */
   .stat-card {
-    @apply bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200;
+    @apply rounded-none border-2 transition-all duration-300;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.8) 0%,
+      rgba(30, 41, 59, 0.6) 100%
+    );
+    border-color: rgba(248, 250, 252, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.03),
+      0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
   }
 
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(245, 158, 11, 0.1),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .stat-card:hover {
+    border-color: var(--warning-gold);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(245, 158, 11, 0.1);
+  }
+
+  .stat-card:hover::after {
+    left: 100%;
+  }
+
+  /* Emergency button with bold crisis styling */
   .btn-primary {
-    @apply px-4 py-2 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:from-red-700 hover:to-orange-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-md;
+    @apply px-6 py-3 rounded-none font-bold uppercase tracking-wider transition-all duration-300 border-2;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    background: linear-gradient(
+      135deg,
+      var(--crisis-red) 0%,
+      var(--emergency-orange) 100%
+    );
+    border-color: var(--crisis-red-dark);
+    color: white;
+    box-shadow:
+      0 4px 0 var(--crisis-red-darker),
+      0 8px 20px rgba(220, 38, 38, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: 0;
   }
 
+  .btn-primary:hover:not(:disabled) {
+    background: linear-gradient(
+      135deg,
+      var(--crisis-red-dark) 0%,
+      var(--crisis-red) 100%
+    );
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 0 var(--crisis-red-darker),
+      0 12px 30px rgba(220, 38, 38, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(220, 38, 38, 0.3);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow:
+      0 2px 0 var(--crisis-red-darker),
+      0 4px 10px rgba(220, 38, 38, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow:
+      0 4px 0 rgba(127, 29, 29, 0.5),
+      0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Secondary button with industrial aesthetic */
   .btn-secondary {
-    @apply px-4 py-2 bg-slate-700 text-white rounded-lg font-medium shadow-sm hover:shadow-md hover:bg-slate-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply px-6 py-3 rounded-none font-bold uppercase tracking-wider transition-all duration-300 border-2;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    background: linear-gradient(
+      135deg,
+      rgba(30, 41, 59, 0.9) 0%,
+      rgba(51, 65, 85, 0.9) 100%
+    );
+    border-color: rgba(248, 250, 252, 0.2);
+    color: var(--warning-yellow);
+    box-shadow:
+      0 4px 0 rgba(15, 23, 42, 0.8),
+      0 8px 20px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
+  .btn-secondary:hover:not(:disabled) {
+    border-color: var(--warning-gold);
+    color: white;
+    box-shadow:
+      0 6px 0 rgba(15, 23, 42, 0.8),
+      0 12px 30px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 40px rgba(245, 158, 11, 0.2);
+  }
+
+  /* Badge system with emergency aesthetics */
   .badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+    @apply inline-flex items-center px-3 py-1 rounded-none text-xs font-bold uppercase tracking-wider border-2;
+    font-family: 'JetBrains Mono', monospace;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
   .badge-success {
-    @apply badge bg-emerald-50 text-emerald-700 border border-emerald-200;
+    @apply badge;
+    background: rgba(16, 185, 129, 0.2);
+    color: #6EE7B7;
+    border-color: #10B981;
+    box-shadow:
+      0 2px 8px rgba(16, 185, 129, 0.3),
+      inset 0 0 20px rgba(16, 185, 129, 0.1);
   }
 
   .badge-danger {
-    @apply badge bg-red-50 text-red-700 border border-red-200;
+    @apply badge;
+    background: rgba(220, 38, 38, 0.2);
+    color: #FCA5A5;
+    border-color: var(--crisis-red);
+    box-shadow:
+      0 2px 8px rgba(220, 38, 38, 0.3),
+      inset 0 0 20px rgba(220, 38, 38, 0.1);
+    animation: danger-glow 2s ease-in-out infinite;
   }
 
   .badge-warning {
-    @apply badge bg-orange-50 text-orange-700 border border-orange-200;
+    @apply badge;
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--warning-yellow);
+    border-color: var(--warning-gold);
+    box-shadow:
+      0 2px 8px rgba(245, 158, 11, 0.3),
+      inset 0 0 20px rgba(245, 158, 11, 0.1);
   }
 
+  /* Emergency alert box */
   .alert-error {
-    @apply bg-red-50 border-2 border-red-200 rounded-xl p-4 text-red-800;
+    @apply rounded-none p-6 border-4;
+    background: linear-gradient(
+      135deg,
+      rgba(127, 29, 29, 0.3) 0%,
+      rgba(153, 27, 27, 0.2) 100%
+    );
+    border-color: var(--crisis-red);
+    color: #FCA5A5;
+    box-shadow:
+      0 0 0 2px rgba(220, 38, 38, 0.2),
+      0 10px 40px rgba(220, 38, 38, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    animation: alert-pulse 2s ease-in-out infinite;
+  }
+
+  .alert-error::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(220, 38, 38, 0.1) 10px,
+      rgba(220, 38, 38, 0.1) 20px
+    );
+    pointer-events: none;
   }
 }
 
-/* Loading skeleton animation */
-@keyframes pulse {
-  0%, 100% {
+/* Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes hazard-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes blink-marker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes card-entry {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) rotateX(-10deg);
+  }
+  100% {
     opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+@keyframes danger-glow {
+  0%, 100% {
+    box-shadow:
+      0 2px 8px rgba(220, 38, 38, 0.3),
+      inset 0 0 20px rgba(220, 38, 38, 0.1);
   }
   50% {
-    opacity: 0.5;
+    box-shadow:
+      0 2px 8px rgba(220, 38, 38, 0.5),
+      inset 0 0 20px rgba(220, 38, 38, 0.2),
+      0 0 30px rgba(220, 38, 38, 0.3);
   }
 }
+
+@keyframes alert-pulse {
+  0%, 100% {
+    border-color: var(--crisis-red);
+  }
+  50% {
+    border-color: var(--warning-gold);
+  }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+@keyframes stripe-drift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(80px, 80px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Staggered entry animations for cards */
+.card:nth-child(1) { animation-delay: 0s; }
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
 
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Smooth transitions for interactive elements */
-button, a, .hover\:shadow-md, .hover\:shadow-lg, .hover\:shadow-xl {
-  transition: all 0.2s ease;
+/* Data displays with monospace styling */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
 }
 
-/* Custom scrollbar */
+/* Smooth transitions for interactive elements */
+button, a, [class*="hover:"] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar with industrial aesthetic */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100;
+  background: var(--industrial-black);
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full;
+  background: linear-gradient(
+    180deg,
+    var(--crisis-red) 0%,
+    var(--crisis-red-dark) 100%
+  );
+  border: 2px solid var(--industrial-black);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400;
+  background: linear-gradient(
+    180deg,
+    var(--warning-gold) 0%,
+    var(--emergency-orange) 100%
+  );
+}
+
+/* Container adjustments for dramatic layout */
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Dramatic number styling for financial data */
+.text-4xl, .text-3xl, .text-2xl {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.02em;
+}
+
+/* Emergency status indicators */
+.emergency-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--crisis-red);
+  box-shadow:
+    0 0 10px var(--crisis-red),
+    0 0 20px var(--crisis-red),
+    inset 0 0 5px rgba(255, 255, 255, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.success-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow:
+    0 0 10px #10B981,
+    0 0 20px #10B981,
+    inset 0 0 5px rgba(255, 255, 255, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  .btn-primary, .btn-secondary {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .card {
+    @apply border-2;
+  }
 }
