@@ -7,6 +7,7 @@
   import { sum } from '../utils/calculations.js';
 
   let nftsExpanded = false;
+  let ethExpanded = false;
 
   $: ethValue = ($treasuryData?.ethBalance || 0) * ($treasuryData?.ethPrice || 0);
   $: stablecoinsValue = sum(Object.values($treasuryData?.stablecoins || {}));
@@ -20,6 +21,18 @@
 
   function toggleNFTs() {
     nftsExpanded = !nftsExpanded;
+  }
+
+  function toggleETH() {
+    ethExpanded = !ethExpanded;
+  }
+
+  function getEtherscanLink(contractAddress) {
+    return `https://etherscan.io/address/${contractAddress}`;
+  }
+
+  function getOpenSeaLink(contractAddress) {
+    return `https://opensea.io/assets/ethereum/${contractAddress}`;
   }
 </script>
 
@@ -35,9 +48,35 @@
   {:else}
     <ul class="space-y-3 text-gray-700">
       <li class="flex justify-between">
-        <span>ETH & Stablecoins:</span>
-        <span class="font-semibold">{formatValue(ethValue + stablecoinsValue)}</span>
+        <button
+          on:click={toggleETH}
+          class="flex justify-between w-full hover:text-gray-900 transition-colors"
+          class:text-gray-900={ethExpanded}
+        >
+          <span>
+            {ethExpanded ? '▼' : '▶'} ETH & Stablecoins:
+          </span>
+          <span class="font-semibold">{formatValue(ethValue + stablecoinsValue)}</span>
+        </button>
       </li>
+
+      {#if ethExpanded}
+        <li class="pl-4 space-y-2 mt-2">
+          <div class="flex justify-between text-sm">
+            <span>• ETH Balance: {formatETH($treasuryData?.ethBalance || 0)}</span>
+            <span class="font-medium">{formatValue(ethValue)}</span>
+          </div>
+          <div class="flex justify-between text-sm text-gray-500">
+            <span>  @ {formatUSD($treasuryData?.ethPrice || 0)} per ETH</span>
+          </div>
+          {#if stablecoinsValue > 0}
+            <div class="flex justify-between text-sm">
+              <span>• Stablecoins:</span>
+              <span class="font-medium">{formatValue(stablecoinsValue)}</span>
+            </div>
+          {/if}
+        </li>
+      {/if}
 
       <li class="flex justify-between">
         <span>ERC-20 Tokens:</span>
@@ -61,9 +100,29 @@
         <li class="pl-4 space-y-2 mt-2">
           <p class="text-sm text-gray-500 mb-2">Collections:</p>
           {#each $treasuryData.nfts as nft}
-            <div class="flex justify-between text-sm">
-              <span>• {nft.name}: {nft.quantity} @ {formatETH(nft.floorPrice)}</span>
-              <span class="font-medium">{formatValue(nft.quantity * nft.floorPrice * ($treasuryData?.ethPrice || 0))}</span>
+            <div class="space-y-1">
+              <div class="flex justify-between text-sm">
+                <span>• {nft.name}: {nft.quantity} @ {formatETH(nft.floorPrice)}</span>
+                <span class="font-medium">{formatValue(nft.quantity * nft.floorPrice * ($treasuryData?.ethPrice || 0))}</span>
+              </div>
+              <div class="flex gap-3 text-xs text-blue-600 pl-4">
+                <a
+                  href={getEtherscanLink(nft.contractAddress)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:underline"
+                >
+                  Etherscan ↗
+                </a>
+                <a
+                  href={getOpenSeaLink(nft.contractAddress)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:underline"
+                >
+                  OpenSea ↗
+                </a>
+              </div>
             </div>
           {/each}
         </li>
