@@ -9,8 +9,11 @@
 
   async function handleRefresh() {
     isRefreshing = true;
-    await loadTreasuryData();
-    isRefreshing = false;
+    try {
+      await loadTreasuryData();
+    } finally {
+      isRefreshing = false;
+    }
   }
 </script>
 
