@@ -112,15 +112,58 @@ async function fetchTokenHolders() {
 
   await delay(200);
 
-  // Get token holder list (this returns top 10000 holders)
-  // Note: Free Etherscan API doesn't have a dedicated "get all holders" endpoint
-  // We'll use the token transfer events to build a holder list
-  console.log('⚠️  Note: Token holder fetching requires additional API calls or a subgraph');
-  console.log('⚠️  For now, returning empty holder list. Consider using The Graph or Alchemy for full holder data.');
+  // Etherscan's free API doesn't have a direct "top holders" endpoint
+  // We need to use token transfer events or The Graph for comprehensive holder data
+  // For now, return a placeholder that calculates from transfer events
+
+  console.log('  → Fetching token transfer events to build holder list...');
+  console.log('  ⚠️  Note: This is a simplified approach. Production should use The Graph.');
+
+  // Get recent transfer events (last 10000 blocks or use pagination)
+  const transferUrl = `https://api.etherscan.io/v2/api?chainid=1&module=account&action=tokentx&contractaddress=${config.addresses.governanceToken}&startblock=0&endblock=99999999&sort=asc&apikey=${config.etherscanApiKey}`;
+  const transferResponse = await fetch(transferUrl);
+  const transferData = await transferResponse.json();
+
+  if (transferData.status !== '1') {
+    console.log('  ⚠️  Could not fetch transfer events:', transferData.message);
+    return { holders: [], totalSupply };
+  }
+
+  // Build holder balances from transfer events
+  const balances = new Map();
+
+  for (const tx of transferData.result) {
+    const from = tx.from.toLowerCase();
+    const to = tx.to.toLowerCase();
+    const value = parseInt(tx.value);
+
+    // Subtract from sender (unless it's a mint from 0x0)
+    if (from !== '0x0000000000000000000000000000000000000000') {
+      balances.set(from, (balances.get(from) || 0) - value);
+    }
+
+    // Add to receiver (unless it's a burn to 0x0)
+    if (to !== '0x0000000000000000000000000000000000000000') {
+      balances.set(to, (balances.get(to) || 0) + value);
+    }
+  }
+
+  // Convert to array and filter out zero/negative balances
+  const holders = Array.from(balances.entries())
+    .filter(([_, balance]) => balance > 0)
+    .map(([address, balance]) => ({
+      address,
+      balance: balance / 1e18, // Convert from Wei to token units
+      percentage: (balance / totalSupply) * 100
+    }))
+    .sort((a, b) => b.balance - a.balance)
+    .slice(0, 100); // Top 100 holders
+
+  console.log(`  ✓ Found ${holders.length} token holders`);
 
   return {
-    holders: [],
-    totalSupply
+    holders,
+    totalSupply: totalSupply / 1e18
   };
 }
 
