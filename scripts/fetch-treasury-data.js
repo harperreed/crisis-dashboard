@@ -167,6 +167,20 @@ async function fetchBalance(address) {
   return parseFloat(data.result) / 1e18; // Convert Wei to ETH
 }
 
+async function fetchTokenBalance(tokenAddress, walletAddress) {
+  if (!config.etherscanApiKey) {
+    throw new Error('ETHERSCAN_API_KEY required for token balance fetching');
+  }
+  const url = `https://api.etherscan.io/v2/api?chainid=1&module=account&action=tokenbalance&contractaddress=${tokenAddress}&address=${walletAddress}&tag=latest&apikey=${config.etherscanApiKey}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status !== '1') {
+    console.log(`    ⚠️  Could not fetch balance for ${tokenAddress}: ${data.message}`);
+    return 0;
+  }
+  return parseInt(data.result);
+}
+
 async function fetchERC20Tokens() {
   if (!config.alchemyApiKey) {
     console.log('⚠️  ALCHEMY_API_KEY not set. Skipping ERC-20 token fetching.');
@@ -187,6 +201,31 @@ async function fetchERC20Tokens() {
 
   // Combine and deduplicate token addresses
   const allTokenBalances = new Map();
+
+  // Explicitly fetch important tokens that Alchemy sometimes misses
+  console.log('  → Explicitly checking for USDC, USDT, DAI, and WETH...');
+  const importantTokens = {
+    '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': 'USDC',  // 6 decimals
+    '0xdac17f958d2ee523a2206206994597c13d831ec7': 'USDT',  // 6 decimals
+    '0x6b175474e89094c44da98b954eedeac495271d0f': 'DAI',   // 18 decimals
+    '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2': 'WETH',  // 18 decimals
+  };
+
+  for (const [address, symbol] of Object.entries(importantTokens)) {
+    try {
+      const mainBalance = await fetchTokenBalance(address, config.addresses.mainSafe);
+      await delay(200);
+      const hotBalance = await fetchTokenBalance(address, config.addresses.hotSafe);
+      const totalBalance = mainBalance + hotBalance;
+
+      if (totalBalance > 0) {
+        allTokenBalances.set(address.toLowerCase(), totalBalance);
+        console.log(`    ✓ Found ${symbol}: ${totalBalance} (raw)`);
+      }
+    } catch (error) {
+      console.log(`    ⚠️  Could not fetch ${symbol}: ${error.message}`);
+    }
+  }
 
   for (const token of mainTokens.tokenBalances) {
     if (token.tokenBalance && token.tokenBalance !== '0') {

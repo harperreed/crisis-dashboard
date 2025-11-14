@@ -1,9 +1,18 @@
 {
-  "timestamp": 1763143322667,
+  "timestamp": 1763144003389,
   "ethBalance": 30.286464216790442,
-  "ethPrice": 3173.36,
-  "stablecoins": {},
+  "ethPrice": 3187.7,
+  "stablecoins": {
+    "USDC": 4330.379262
+  },
   "tokens": [
+    {
+      "symbol": "WETH",
+      "name": "WETH",
+      "balance": 13.7000002,
+      "price": 3191.33,
+      "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+    },
     {
       "symbol": "DEEPSEEK R1",
       "name": "DeepSeek R1",
@@ -491,7 +500,7 @@
       "symbol": "APE",
       "name": "ApeCoin",
       "balance": 5047,
-      "price": 0.357935,
+      "price": 0.358192,
       "contractAddress": "0x4d224452801aced8b2f0aebe155379bb5d594381"
     },
     {
@@ -603,7 +612,7 @@
       "symbol": "SAFE",
       "name": "Safe",
       "balance": 5398.888135267057,
-      "price": 0.169597,
+      "price": 0.170964,
       "contractAddress": "0x5afe3855358e112b5647b952709e6165e1c1eeee"
     },
     {
@@ -726,13 +735,6 @@
       "contractAddress": "0x6f05f924f6e4d0d663fafde6a7efb3a496f5dc91"
     },
     {
-      "symbol": "WETH",
-      "name": "WETH",
-      "balance": 0,
-      "price": 3166.18,
-      "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
-    },
-    {
       "symbol": "ESTHER",
       "name": "Esther the Wonder Pig",
       "balance": 0,
@@ -758,7 +760,7 @@
       "tokens": [
         "269"
       ],
-      "floorPrice": 0.26038816
+      "floorPrice": 0.26026811
     },
     {
       "name": "Unknown Collection",
@@ -783,7 +785,7 @@
       "tokens": [
         "5879"
       ],
-      "floorPrice": 0.3966043798
+      "floorPrice": 0.3965781897
     },
     {
       "name": "MoonCatLootprint",
@@ -1038,7 +1040,7 @@
         "1226",
         "2614"
       ],
-      "floorPrice": 0.19361197779999811
+      "floorPrice": 0.1935539661999971
     },
     {
       "name": "GutterCatGang",
