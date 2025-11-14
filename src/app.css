@@ -1,103 +1,401 @@
-/* ABOUTME: Main stylesheet with Tailwind directives and global styles */
-/* ABOUTME: Crisis-themed design with emergency colors and modern components */
+/* ABOUTME: Premium Dashboard - Luxury financial publication aesthetic */
+/* ABOUTME: Elegant design combining editorial sophistication with modern fintech polish */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-gradient-to-br from-slate-50 via-white to-slate-50 text-slate-900 antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  :root {
+    /* Navy palette - authority and trust */
+    --navy-primary: #1E3A8A;
+    --navy-dark: #0F2557;
+    --navy-light: #3B5998;
+
+    /* Gold palette - premium accents */
+    --gold-primary: #C9A961;
+    --gold-dark: #B8860B;
+    --gold-light: #E5D4B5;
+
+    /* Neutrals - sophisticated backgrounds */
+    --cream: #FAFAF9;
+    --stone: #F5F5F4;
+    --warm-white: #FFFFFF;
+
+    /* Grays - professional text and borders */
+    --slate-text: #64748B;
+    --slate-border: #CBD5E1;
+    --slate-light: #F1F5F9;
+
+    /* Semantic colors */
+    --success: #059669;
+    --success-light: #D1FAE5;
+    --danger: #DC2626;
+    --danger-light: #FEE2E2;
   }
 
+  body {
+    @apply antialiased;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #FAFAF9 0%, #F5F5F4 100%);
+    color: #334155;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Sophisticated typography hierarchy */
   h1 {
-    @apply text-4xl font-bold mb-4 bg-gradient-to-r from-red-600 via-orange-600 to-red-600 bg-clip-text text-transparent;
+    font-family: 'Crimson Pro', Georgia, serif;
+    @apply text-5xl md:text-6xl font-bold mb-3;
+    color: var(--navy-dark);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
   }
 
   h2 {
-    @apply text-2xl font-semibold mb-3 text-slate-800;
+    font-family: 'Crimson Pro', Georgia, serif;
+    @apply text-3xl md:text-4xl font-semibold mb-4;
+    color: var(--navy-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   h3 {
-    @apply text-lg font-semibold mb-2 text-slate-700;
+    font-family: 'DM Sans', sans-serif;
+    @apply text-lg md:text-xl font-semibold mb-3;
+    color: var(--navy-primary);
+    letter-spacing: -0.01em;
+  }
+
+  /* Elegant subtitle styling */
+  .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    @apply text-sm;
+    color: var(--slate-text);
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    font-weight: 500;
   }
 }
 
 @layer components {
+  /* Premium card with elegant shadows */
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-slate-200/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300;
+    @apply rounded-2xl transition-all duration-300;
+    background: var(--warm-white);
+    border: 1px solid var(--slate-border);
+    box-shadow:
+      0 1px 3px rgba(15, 37, 87, 0.04),
+      0 4px 12px rgba(15, 37, 87, 0.06);
+    padding: 2rem;
   }
 
+  .card:hover {
+    border-color: var(--gold-light);
+    box-shadow:
+      0 4px 6px rgba(15, 37, 87, 0.06),
+      0 12px 24px rgba(15, 37, 87, 0.08),
+      0 0 0 1px var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient variant with subtle gold accent */
   .card-gradient {
-    @apply bg-gradient-to-br from-white via-white to-slate-50/30 rounded-xl shadow-lg border border-slate-200/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300;
+    @apply card;
+    background: linear-gradient(
+      135deg,
+      #FFFFFF 0%,
+      #FAFAF9 50%,
+      rgba(201, 169, 97, 0.03) 100%
+    );
   }
 
+  /* Stat card for data display */
   .stat-card {
-    @apply bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200;
+    @apply rounded-xl transition-all duration-200;
+    background: var(--slate-light);
+    border: 1px solid rgba(203, 213, 225, 0.5);
+    padding: 1.25rem;
+    box-shadow: 0 1px 2px rgba(15, 37, 87, 0.03);
   }
 
+  .stat-card:hover {
+    background: var(--warm-white);
+    border-color: var(--gold-light);
+    box-shadow:
+      0 2px 4px rgba(15, 37, 87, 0.05),
+      0 0 0 1px var(--gold-light);
+  }
+
+  /* Premium primary button */
   .btn-primary {
-    @apply px-4 py-2 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:from-red-700 hover:to-orange-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-md;
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-dark) 100%);
+    color: white;
+    border: 1px solid var(--navy-dark);
+    box-shadow:
+      0 2px 4px rgba(30, 58, 138, 0.15),
+      0 4px 12px rgba(30, 58, 138, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.01em;
   }
 
+  .btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, #0A1F4A 100%);
+    box-shadow:
+      0 4px 6px rgba(30, 58, 138, 0.2),
+      0 8px 20px rgba(30, 58, 138, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow:
+      0 1px 2px rgba(30, 58, 138, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Secondary button with gold accent */
   .btn-secondary {
-    @apply px-4 py-2 bg-slate-700 text-white rounded-lg font-medium shadow-sm hover:shadow-md hover:bg-slate-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--navy-primary);
+    border: 1.5px solid var(--slate-border);
+    box-shadow: 0 1px 3px rgba(15, 37, 87, 0.08);
+    letter-spacing: 0.01em;
   }
 
+  .btn-secondary:hover:not(:disabled) {
+    background: var(--cream);
+    border-color: var(--gold-primary);
+    color: var(--navy-dark);
+    box-shadow:
+      0 2px 4px rgba(15, 37, 87, 0.1),
+      0 0 0 1px var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Elegant badge system */
   .badge {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.02em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
   .badge-success {
-    @apply badge bg-emerald-50 text-emerald-700 border border-emerald-200;
+    @apply badge;
+    background: var(--success-light);
+    color: var(--success);
+    border: 1px solid rgba(5, 150, 105, 0.2);
   }
 
   .badge-danger {
-    @apply badge bg-red-50 text-red-700 border border-red-200;
+    @apply badge;
+    background: var(--danger-light);
+    color: var(--danger);
+    border: 1px solid rgba(220, 38, 38, 0.2);
   }
 
   .badge-warning {
-    @apply badge bg-orange-50 text-orange-700 border border-orange-200;
+    @apply badge;
+    background: rgba(245, 158, 11, 0.1);
+    color: #D97706;
+    border: 1px solid rgba(245, 158, 11, 0.2);
   }
 
+  .badge-neutral {
+    @apply badge;
+    background: var(--slate-light);
+    color: var(--slate-text);
+    border: 1px solid var(--slate-border);
+  }
+
+  /* Refined alert box */
   .alert-error {
-    @apply bg-red-50 border-2 border-red-200 rounded-xl p-4 text-red-800;
+    @apply rounded-xl p-5 border;
+    background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+    border-color: rgba(220, 38, 38, 0.2);
+    color: #991B1B;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
+  }
+
+  /* Gold accent divider */
+  .divider-gold {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--gold-primary) 50%,
+      transparent 100%
+    );
+    opacity: 0.3;
   }
 }
 
-/* Loading skeleton animation */
-@keyframes pulse {
-  0%, 100% {
+/* Subtle, elegant animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
     opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
+    transform: translateY(0);
   }
 }
 
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
-/* Smooth transitions for interactive elements */
-button, a, .hover\:shadow-md, .hover\:shadow-lg, .hover\:shadow-xl {
-  transition: all 0.2s ease;
+/* Staggered card entry */
+.card:nth-child(1) { animation: fadeIn 0.5s ease-out 0.05s backwards; }
+.card:nth-child(2) { animation: fadeIn 0.5s ease-out 0.1s backwards; }
+.card:nth-child(3) { animation: fadeIn 0.5s ease-out 0.15s backwards; }
+.card:nth-child(4) { animation: fadeIn 0.5s ease-out 0.2s backwards; }
+.card:nth-child(5) { animation: fadeIn 0.5s ease-out 0.25s backwards; }
+
+/* Loading state with elegant shimmer */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--slate-light) 0%,
+    rgba(203, 213, 225, 0.3) 50%,
+    var(--slate-light) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
 }
 
-/* Custom scrollbar */
+/* Monospace styling for financial data */
+.font-mono {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Premium number displays */
+.display-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  color: var(--navy-dark);
+  letter-spacing: -0.02em;
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, .card, .stat-card, .badge {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Refined scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100;
+  background: var(--slate-light);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full;
+  background: linear-gradient(
+    180deg,
+    var(--gold-primary) 0%,
+    var(--gold-dark) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid var(--slate-light);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400;
+  background: var(--gold-dark);
+}
+
+/* Elegant status indicator */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow:
+    0 0 0 2px rgba(5, 150, 105, 0.2),
+    0 0 8px rgba(5, 150, 105, 0.3);
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Container with generous spacing */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Typography utilities */
+.text-navy { color: var(--navy-primary); }
+.text-navy-dark { color: var(--navy-dark); }
+.text-gold { color: var(--gold-primary); }
+.text-slate { color: var(--slate-text); }
+
+/* Background utilities */
+.bg-cream { background-color: var(--cream); }
+.bg-stone { background-color: var(--stone); }
+.bg-navy { background-color: var(--navy-primary); }
+.bg-gold { background-color: var(--gold-primary); }
+
+/* Border utilities */
+.border-gold { border-color: var(--gold-primary); }
+.border-navy { border-color: var(--navy-primary); }
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .btn-primary, .btn-secondary {
+    @apply px-4 py-2 text-sm;
+  }
 }

@@ -15,9 +15,9 @@
   });
 </script>
 
-<div class="container mx-auto px-4 py-8 max-w-6xl">
-  <Header />
+<Header />
 
+<div class="container mx-auto px-4 py-8 max-w-6xl">
   {#if $error}
     <div class="alert-error mb-8">
       <div class="flex items-start gap-3">

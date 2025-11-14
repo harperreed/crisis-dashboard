@@ -1,46 +1,36 @@
-<!-- ABOUTME: Dashboard header with title, wallet connection, and refresh button -->
-<!-- ABOUTME: Displays last updated timestamp and controls -->
+<!-- ABOUTME: Dashboard header with title and wallet connection -->
+<!-- ABOUTME: Displays last updated timestamp, ETH price, and wallet controls -->
 <script>
-  import { lastUpdated, loadTreasuryData } from '../stores/treasury.js';
+  import { lastUpdated, treasuryData } from '../stores/treasury.js';
   import { formatTimeAgo } from '../utils/formatters.js';
   import WalletConnect from './WalletConnect.svelte';
-
-  let isRefreshing = false;
-
-  async function handleRefresh() {
-    isRefreshing = true;
-    try {
-      await loadTreasuryData();
-    } finally {
-      isRefreshing = false;
-    }
-  }
 </script>
 
-<header class="border-b-2 border-slate-200 pb-8 mb-8">
-  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-    <div>
-      <h1 class="mb-2">Crisis DAO Treasury Dashboard</h1>
-      {#if $lastUpdated}
-        <p class="text-sm text-slate-500 font-medium">
-          <span class="inline-block w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
-          Last updated: {formatTimeAgo($lastUpdated)}
-        </p>
-      {/if}
-    </div>
+<header class="w-full bg-gradient-to-b from-cream to-stone border-b border-slate-border">
+  <div class="container mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 py-8">
+      <div>
+        <h1 class="mb-3">Crisis DAO Treasury Dashboard</h1>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+          {#if $lastUpdated}
+            <p class="subtitle flex items-center gap-2">
+              <span class="status-dot"></span>
+              Last updated {formatTimeAgo($lastUpdated)}
+            </p>
+          {/if}
+          {#if $treasuryData?.ethPrice}
+            <p class="subtitle flex items-center gap-2">
+              <span class="text-gold">ETH</span>
+              <span class="font-mono font-semibold text-navy-dark">${$treasuryData.ethPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </p>
+          {/if}
+        </div>
+      </div>
 
-    <div class="flex items-center gap-3">
-      <WalletConnect />
-      <button
-        on:click={handleRefresh}
-        disabled={isRefreshing}
-        class="btn-secondary"
-      >
-        {#if isRefreshing}
-          <span class="inline-block mr-2">⟳</span>
-        {/if}
-        {isRefreshing ? 'Refreshing...' : 'Refresh'}
-      </button>
+      <div class="flex items-center">
+        <WalletConnect />
+      </div>
     </div>
+    <div class="divider-gold mb-0"></div>
   </div>
 </header>

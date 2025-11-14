@@ -7,12 +7,12 @@
 
 <div class="flex items-center gap-2">
   {#if $isConnected}
-    <div class="flex items-center gap-3 px-4 py-2 bg-emerald-50 border-2 border-emerald-200 rounded-lg shadow-sm">
-      <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+    <div class="flex items-center gap-3 px-4 py-2.5 bg-emerald-50/80 border border-emerald-200/60 rounded-xl shadow-sm backdrop-blur-sm">
+      <span class="status-dot"></span>
       <span class="text-sm font-mono font-semibold text-emerald-900">{formatAddress($walletAddress)}</span>
       <button
         on:click={disconnectWallet}
-        class="ml-1 text-xs text-emerald-700 hover:text-emerald-900 font-medium underline transition-colors"
+        class="ml-2 px-2 py-1 text-xs text-slate-600 border border-slate-300 rounded-md font-medium transition-all hover:text-navy-dark hover:border-gold"
       >
         Disconnect
       </button>
