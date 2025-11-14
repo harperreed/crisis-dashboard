@@ -1,18 +1,11 @@
 {
-  "timestamp": 1763144003389,
+  "timestamp": 1763150935347,
   "ethBalance": 30.286464216790442,
-  "ethPrice": 3187.7,
+  "ethPrice": 3206.23,
   "stablecoins": {
     "USDC": 4330.379262
   },
   "tokens": [
-    {
-      "symbol": "WETH",
-      "name": "WETH",
-      "balance": 13.7000002,
-      "price": 3191.33,
-      "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
-    },
     {
       "symbol": "DEEPSEEK R1",
       "name": "DeepSeek R1",
@@ -402,7 +395,7 @@
       "symbol": "SOS",
       "name": "OpenDAO",
       "balance": 277215808.9753,
-      "price": 1.975e-9,
+      "price": 2.004e-9,
       "contractAddress": "0x3b484b82567a09e2588a13d54d032153f0c0aee0"
     },
     {
@@ -500,7 +493,7 @@
       "symbol": "APE",
       "name": "ApeCoin",
       "balance": 5047,
-      "price": 0.358192,
+      "price": 0.361254,
       "contractAddress": "0x4d224452801aced8b2f0aebe155379bb5d594381"
     },
     {
@@ -612,7 +605,7 @@
       "symbol": "SAFE",
       "name": "Safe",
       "balance": 5398.888135267057,
-      "price": 0.170964,
+      "price": 0.171266,
       "contractAddress": "0x5afe3855358e112b5647b952709e6165e1c1eeee"
     },
     {
@@ -735,6 +728,13 @@
       "contractAddress": "0x6f05f924f6e4d0d663fafde6a7efb3a496f5dc91"
     },
     {
+      "symbol": "WETH",
+      "name": "WETH",
+      "balance": 0,
+      "price": 3209.04,
+      "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+    },
+    {
       "symbol": "ESTHER",
       "name": "Esther the Wonder Pig",
       "balance": 0,
@@ -760,7 +760,7 @@
       "tokens": [
         "269"
       ],
-      "floorPrice": 0.26026811
+      "floorPrice": 0.25927765
     },
     {
       "name": "Unknown Collection",
@@ -785,7 +785,7 @@
       "tokens": [
         "5879"
       ],
-      "floorPrice": 0.3965781897
+      "floorPrice": 0.3957906698
     },
     {
       "name": "MoonCatLootprint",
@@ -993,7 +993,7 @@
       "tokens": [
         "8313"
       ],
-      "floorPrice": 6.27
+      "floorPrice": 6.2699999
     },
     {
       "name": "0N1 Comics",
@@ -1015,7 +1015,7 @@
         "16409",
         "20331"
       ],
-      "floorPrice": 0.13399999990000022
+      "floorPrice": 0.1335
     },
     {
       "name": "othersoil.xyz Mint Pass",
@@ -1040,7 +1040,7 @@
         "1226",
         "2614"
       ],
-      "floorPrice": 0.1935539661999971
+      "floorPrice": 0.19300185599998768
     },
     {
       "name": "GutterCatGang",
