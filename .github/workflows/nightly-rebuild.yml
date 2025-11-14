@@ -1,0 +1,22 @@
+# ABOUTME: GitHub Actions workflow to trigger Netlify rebuild every night at midnight
+# ABOUTME: This ensures the treasury data is refreshed daily with latest prices
+name: Nightly Treasury Data Refresh
+
+on:
+  schedule:
+    # Runs at midnight UTC (00:00) every day
+    # Adjust timezone by changing the hour (e.g., 05:00 for midnight EST/CDT)
+    - cron: '0 0 * * *'
+
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify Deploy
+        run: |
+          curl -X POST -d '{}' ${{ secrets.NETLIFY_BUILD_HOOK }}
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
