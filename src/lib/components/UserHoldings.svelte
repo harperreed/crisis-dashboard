@@ -28,7 +28,8 @@
   $: shareValue = calculateShareValue(userBalance, circulatingSupply, $totalTreasuryValue);
   $: buyInETH = calculateBuyInETH(userBalance);
   $: buyInUSD = buyInETH * BUY_IN_ETH_PRICE;
-  $: valueETH = shareValue / ($treasuryData?.ethPrice || 1);
+  $: currentETHPrice = $treasuryData?.ethPrice || 1;
+  $: valueETH = shareValue / currentETHPrice;
   $: valueUSD = shareValue;
   $: pnlETH = valueETH - buyInETH;
   $: pnlUSD = valueUSD - buyInUSD;
@@ -97,7 +98,10 @@
             {pnlUSD >= 0 ? '+' : ''}{formatUSD(pnlUSD)} ({pnlPercentUSD >= 0 ? '+' : ''}{formatPercent(pnlPercentUSD)})
           </p>
           <p class="text-xs text-gray-500 mt-1">
-            Buy-in: {formatETH(buyInETH)} / {formatUSD(buyInUSD)}
+            Buy-in: {formatETH(buyInETH)} / {formatUSD(buyInUSD)} @ ${BUY_IN_ETH_PRICE.toLocaleString()}/ETH
+          </p>
+          <p class="text-xs text-gray-500">
+            Current: ETH @ ${currentETHPrice.toLocaleString()}/ETH
           </p>
         </div>
       </div>

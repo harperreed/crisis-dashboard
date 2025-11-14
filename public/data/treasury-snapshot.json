@@ -1,7 +1,7 @@
 {
-  "timestamp": 1763150935347,
+  "timestamp": 1763151933141,
   "ethBalance": 30.286464216790442,
-  "ethPrice": 3206.23,
+  "ethPrice": 3175.06,
   "stablecoins": {
     "USDC": 4330.379262
   },
@@ -493,7 +493,7 @@
       "symbol": "APE",
       "name": "ApeCoin",
       "balance": 5047,
-      "price": 0.361254,
+      "price": 0.36002,
       "contractAddress": "0x4d224452801aced8b2f0aebe155379bb5d594381"
     },
     {
@@ -605,7 +605,7 @@
       "symbol": "SAFE",
       "name": "Safe",
       "balance": 5398.888135267057,
-      "price": 0.171266,
+      "price": 0.170105,
       "contractAddress": "0x5afe3855358e112b5647b952709e6165e1c1eeee"
     },
     {
@@ -731,7 +731,7 @@
       "symbol": "WETH",
       "name": "WETH",
       "balance": 0,
-      "price": 3209.04,
+      "price": 3176.61,
       "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
     },
     {
@@ -760,7 +760,7 @@
       "tokens": [
         "269"
       ],
-      "floorPrice": 0.25927765
+      "floorPrice": 0.25915761
     },
     {
       "name": "Unknown Collection",
@@ -785,7 +785,7 @@
       "tokens": [
         "5879"
       ],
-      "floorPrice": 0.3957906698
+      "floorPrice": 0.3954956899
     },
     {
       "name": "MoonCatLootprint",
@@ -1040,7 +1040,7 @@
         "1226",
         "2614"
       ],
-      "floorPrice": 0.19300185599998768
+      "floorPrice": 0.1929248403999863
     },
     {
       "name": "GutterCatGang",
