@@ -45,6 +45,18 @@ async function main() {
     console.log('✅ Fetching wallet balances...');
     data.ethBalance = await fetchETHBalances();
 
+    console.log('✅ Fetching ERC-20 tokens...');
+    try {
+      const tokensData = await fetchERC20Tokens();
+      data.tokens = tokensData.tokens;
+      data.stablecoins = tokensData.stablecoins;
+    } catch (error) {
+      console.error('⚠️  Failed to fetch ERC-20 tokens:', error.message);
+      console.log('⚠️  Continuing with empty token list');
+      data.tokens = [];
+      data.stablecoins = {};
+    }
+
     console.log('✅ Fetching token holders...');
     try {
       const holdersData = await fetchTokenHolders();
@@ -111,6 +123,90 @@ async function fetchBalance(address) {
     throw new Error(`Etherscan API error: ${data.message || data.result || 'Unknown error'}`);
   }
   return parseFloat(data.result) / 1e18; // Convert Wei to ETH
+}
+
+async function fetchERC20Tokens() {
+  if (!config.alchemyApiKey) {
+    console.log('⚠️  ALCHEMY_API_KEY not set. Skipping ERC-20 token fetching.');
+    return { tokens: [], stablecoins: {} };
+  }
+
+  const alchemy = new Alchemy({
+    apiKey: config.alchemyApiKey,
+    network: Network.ETH_MAINNET,
+  });
+
+  console.log('  → Fetching ERC-20 tokens for both Safes...');
+
+  // Fetch tokens for both Safe wallets
+  const mainTokens = await alchemy.core.getTokenBalances(config.addresses.mainSafe);
+  await delay(200);
+  const hotTokens = await alchemy.core.getTokenBalances(config.addresses.hotSafe);
+
+  // Combine and deduplicate token addresses
+  const allTokenBalances = new Map();
+
+  for (const token of mainTokens.tokenBalances) {
+    if (token.tokenBalance && token.tokenBalance !== '0') {
+      const balance = parseInt(token.tokenBalance);
+      allTokenBalances.set(token.contractAddress.toLowerCase(), balance);
+    }
+  }
+
+  for (const token of hotTokens.tokenBalances) {
+    if (token.tokenBalance && token.tokenBalance !== '0') {
+      const address = token.contractAddress.toLowerCase();
+      const balance = parseInt(token.tokenBalance);
+      const existing = allTokenBalances.get(address) || 0;
+      allTokenBalances.set(address, existing + balance);
+    }
+  }
+
+  // Known stablecoin addresses
+  const stablecoinAddresses = {
+    '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': 'USDC',  // 6 decimals
+    '0xdac17f958d2ee523a2206206994597c13d831ec7': 'USDT',  // 6 decimals
+    '0x6b175474e89094c44da98b954eedeac495271d0f': 'DAI',   // 18 decimals
+  };
+
+  const tokens = [];
+  const stablecoins = {};
+
+  console.log(`  → Found ${allTokenBalances.size} unique ERC-20 tokens`);
+  console.log('  → Fetching token metadata and prices...');
+
+  for (const [address, rawBalance] of allTokenBalances.entries()) {
+    try {
+      // Get token metadata
+      const metadata = await alchemy.core.getTokenMetadata(address);
+      await delay(100);
+
+      const decimals = metadata.decimals || 18;
+      const balance = rawBalance / Math.pow(10, decimals);
+      const symbol = metadata.symbol || 'UNKNOWN';
+      const name = metadata.name || 'Unknown Token';
+
+      // Check if it's a stablecoin
+      if (stablecoinAddresses[address]) {
+        stablecoins[stablecoinAddresses[address]] = balance;
+      } else {
+        // For other tokens, try to get price (simplified - would need CoinGecko integration for real prices)
+        tokens.push({
+          symbol,
+          name,
+          balance,
+          price: 0, // TODO: Integrate CoinGecko or similar for token prices
+          contractAddress: address
+        });
+      }
+    } catch (error) {
+      console.log(`    ⚠️  Could not fetch metadata for ${address}: ${error.message}`);
+    }
+  }
+
+  console.log(`  ✓ Found ${Object.keys(stablecoins).length} stablecoins and ${tokens.length} other tokens`);
+
+  return { tokens, stablecoins };
 }
 
 async function fetchTokenHolders() {
