@@ -16,7 +16,8 @@ const config = {
     governanceToken: '0x992f9Bb313368Ac11977b62490a83eeee54D9e1F'
   },
   etherscanApiKey: process.env.ETHERSCAN_API_KEY || '',
-  coingeckoApiKey: process.env.COINGECKO_API_KEY || ''
+  coingeckoApiKey: process.env.COINGECKO_API_KEY || '',
+  alchemyApiKey: process.env.ALCHEMY_API_KEY || ''
 };
 
 // Delay helper
