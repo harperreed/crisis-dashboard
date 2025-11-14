@@ -17,19 +17,19 @@
   }
 </script>
 
-<header class="border-b-4 border-red-600/30 pb-8 mb-12">
-  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+<header class="border-b-2 border-slate-200 pb-8 mb-8">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
     <div>
-      <h1 class="mb-4">Crisis DAO Treasury Dashboard</h1>
+      <h1 class="mb-2">Crisis DAO Treasury Dashboard</h1>
       {#if $lastUpdated}
-        <p class="text-sm font-mono font-medium text-yellow-200/80 tracking-wide">
-          <span class="success-dot mr-3"></span>
-          LAST UPDATED: {formatTimeAgo($lastUpdated).toUpperCase()}
+        <p class="text-sm text-slate-500 font-medium">
+          <span class="inline-block w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+          Last updated: {formatTimeAgo($lastUpdated)}
         </p>
       {/if}
     </div>
 
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
       <WalletConnect />
       <button
         on:click={handleRefresh}
@@ -37,9 +37,9 @@
         class="btn-secondary"
       >
         {#if isRefreshing}
-          <span class="inline-block mr-2 animate-spin">⟳</span>
+          <span class="inline-block mr-2">⟳</span>
         {/if}
-        {isRefreshing ? 'Refreshing' : 'Refresh'}
+        {isRefreshing ? 'Refreshing...' : 'Refresh'}
       </button>
     </div>
   </div>
