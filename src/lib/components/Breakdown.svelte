@@ -3,7 +3,7 @@
 <script>
   import { currency } from '../stores/currency.js';
   import { treasuryData, isLoading } from '../stores/treasury.js';
-  import { formatUSD, formatETH } from '../utils/formatters.js';
+  import { formatUSD, formatETH, formatTokenPrice } from '../utils/formatters.js';
   import { sum } from '../utils/calculations.js';
 
   let nftsExpanded = false;
@@ -14,7 +14,7 @@
   $: stablecoinsValue = sum(Object.values($treasuryData?.stablecoins || {}));
   $: tokensValue = sum($treasuryData?.tokens?.map(t => t.balance * t.price) || []);
   $: nftsValue = sum($treasuryData?.nfts?.map(n => n.tokens.length * n.floorPrice * ($treasuryData?.ethPrice || 0)) || []);
-  $: tokensWithValue = $treasuryData?.tokens?.filter(t => t.balance > 0 && (t.balance * t.price) > 0) || [];
+  $: tokensWithValue = $treasuryData?.tokens?.filter(t => t.balance > 0 && (t.balance * t.price) >= 0.50) || [];
 
   function formatValue(value) {
     if ($currency === 'USD') return formatUSD(value);
@@ -131,7 +131,7 @@
                     <td class="py-2 text-right">{token.balance.toFixed(4)}</td>
                     <td class="py-2 text-right">
                       {#if token.price > 0}
-                        {formatUSD(token.price)}
+                        {formatTokenPrice(token.price)}
                       {:else}
                         <span class="text-gray-400">—</span>
                       {/if}

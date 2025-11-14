@@ -14,6 +14,36 @@ export function formatUSD(amount) {
 }
 
 /**
+ * Format token price with appropriate decimals
+ * Shows more decimals for small prices
+ */
+export function formatTokenPrice(price) {
+  if (price >= 1) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(price);
+  } else if (price >= 0.01) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 4,
+      maximumFractionDigits: 4
+    }).format(price);
+  } else if (price > 0) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 6,
+      maximumFractionDigits: 8
+    }).format(price);
+  }
+  return '$0';
+}
+
+/**
  * Format number as ETH with symbol
  */
 export function formatETH(amount) {
