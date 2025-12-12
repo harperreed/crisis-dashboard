@@ -19,8 +19,16 @@
   export let date;
 
   let originalTreasuryData = null;
+  let unsubscribeSnapshot;
+  let unsubscribeLoading;
 
   onMount(async () => {
+    // Validate date format
+    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      snapshotError.set('Invalid date format');
+      return;
+    }
+
     // Save the current treasury data
     const unsubscribe = treasuryData.subscribe(value => {
       originalTreasuryData = value;
@@ -31,7 +39,7 @@
     await loadHistoricalSnapshot(date);
 
     // Subscribe to historical snapshot and populate treasury store
-    const unsubscribeSnapshot = historicalSnapshot.subscribe(snapshot => {
+    unsubscribeSnapshot = historicalSnapshot.subscribe(snapshot => {
       if (snapshot) {
         treasuryData.set(snapshot);
         isLoading.set(false);
@@ -39,17 +47,16 @@
     });
 
     // Subscribe to loading state
-    const unsubscribeLoading = isLoadingSnapshot.subscribe(loading => {
+    unsubscribeLoading = isLoadingSnapshot.subscribe(loading => {
       isLoading.set(loading);
     });
-
-    return () => {
-      unsubscribeSnapshot();
-      unsubscribeLoading();
-    };
   });
 
   onDestroy(() => {
+    // Clean up subscriptions
+    if (unsubscribeSnapshot) unsubscribeSnapshot();
+    if (unsubscribeLoading) unsubscribeLoading();
+
     // Restore original treasury data when leaving historical view
     if (originalTreasuryData) {
       treasuryData.set(originalTreasuryData);
