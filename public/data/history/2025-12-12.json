@@ -785,7 +785,7 @@
       "tokens": [
         "5879"
       ],
-      "floorPrice": 0.3954956899
+      "floorPrice": 0.351
     },
     {
       "name": "MoonCatLootprint",
@@ -822,7 +822,7 @@
       "tokens": [
         "5703"
       ],
-      "floorPrice": 1.493999
+      "floorPrice": 1.649
     },
     {
       "name": "Otherdeed",
@@ -830,7 +830,7 @@
       "tokens": [
         "8313"
       ],
-      "floorPrice": 0.11984899
+      "floorPrice": 0.0901
     },
     {
       "name": "0N1 Gear",
@@ -993,7 +993,7 @@
       "tokens": [
         "8313"
       ],
-      "floorPrice": 6.2699999
+      "floorPrice": 4.89
     },
     {
       "name": "0N1 Comics",
@@ -1015,7 +1015,7 @@
         "16409",
         "20331"
       ],
-      "floorPrice": 0.1335
+      "floorPrice": 0.129
     },
     {
       "name": "othersoil.xyz Mint Pass",

@@ -124,7 +124,12 @@ Then either:
   const floorsByDate = new Map();
 
   for (const row of records) {
-    const date = row.date || row.day;  // Handle different column names
+    // Handle Dune's date format: "2024-01-01 00:00:00.000 UTC" -> "2024-01-01"
+    let date = row.date || row.day;
+    if (date && date.includes(' ')) {
+      date = date.split(' ')[0];  // Extract just YYYY-MM-DD
+    }
+
     const contract = (row.nft_contract_address || row.contract_address || '').toLowerCase();
     const floor = parseFloat(row.floor_price_eth || row.floor_price || 0);
 
