@@ -3,6 +3,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { Chart, registerables } from 'chart.js';
+  import 'chartjs-adapter-date-fns';
   import { historyIndex } from '../stores/historyStore.js';
   import { createEventDispatcher } from 'svelte';
 
@@ -229,11 +230,6 @@
       createChart();
     }
   });
-
-  // Recreate chart when data or time range changes
-  $: if ($historyIndex?.dates?.length && chartCanvas) {
-    createChart();
-  }
 
   onDestroy(() => {
     if (chart) chart.destroy();
