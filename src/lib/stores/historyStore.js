@@ -65,6 +65,10 @@ export async function loadHistoricalSnapshot(date) {
     return;
   }
 
+  if (date && !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    throw new Error(`Invalid date format: ${date}. Expected YYYY-MM-DD`);
+  }
+
   isLoadingSnapshot.set(true);
   snapshotError.set(null);
 
@@ -94,42 +98,40 @@ export function clearHistoricalView() {
  * Navigate to the next date in history (newer)
  */
 export function goToNextDate() {
-  const index = historyIndex.subscribe(value => {
-    if (!value?.dates?.length) return;
+  let currentIndex;
+  let currentDateVal;
 
-    const currentDate = selectedDate.subscribe(date => {
-      if (!date) return;
+  const unsubIndex = historyIndex.subscribe(value => { currentIndex = value; });
+  const unsubDate = selectedDate.subscribe(value => { currentDateVal = value; });
 
-      const currentIndex = value.dates.findIndex(d => d.date === date);
-      if (currentIndex < value.dates.length - 1) {
-        loadHistoricalSnapshot(value.dates[currentIndex + 1].date);
-      }
-    });
+  unsubIndex();
+  unsubDate();
 
-    currentDate();
-  });
+  if (!currentIndex?.dates?.length || !currentDateVal) return;
 
-  index();
+  const idx = currentIndex.dates.findIndex(d => d.date === currentDateVal);
+  if (idx < currentIndex.dates.length - 1) {
+    loadHistoricalSnapshot(currentIndex.dates[idx + 1].date);
+  }
 }
 
 /**
  * Navigate to the previous date in history (older)
  */
 export function goToPreviousDate() {
-  const index = historyIndex.subscribe(value => {
-    if (!value?.dates?.length) return;
+  let currentIndex;
+  let currentDateVal;
 
-    const currentDate = selectedDate.subscribe(date => {
-      if (!date) return;
+  const unsubIndex = historyIndex.subscribe(value => { currentIndex = value; });
+  const unsubDate = selectedDate.subscribe(value => { currentDateVal = value; });
 
-      const currentIndex = value.dates.findIndex(d => d.date === date);
-      if (currentIndex > 0) {
-        loadHistoricalSnapshot(value.dates[currentIndex - 1].date);
-      }
-    });
+  unsubIndex();
+  unsubDate();
 
-    currentDate();
-  });
+  if (!currentIndex?.dates?.length || !currentDateVal) return;
 
-  index();
+  const idx = currentIndex.dates.findIndex(d => d.date === currentDateVal);
+  if (idx > 0) {
+    loadHistoricalSnapshot(currentIndex.dates[idx - 1].date);
+  }
 }
