@@ -13,30 +13,33 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
- * Fetch historical ETH price from CoinGecko
+ * Fetch historical ETH price from DeFiLlama (free, no API key required)
  * @param {string} date - Date in YYYY-MM-DD format
  * @returns {Promise<number>} ETH price in USD
  */
 async function fetchHistoricalETHPrice(date) {
-  // CoinGecko expects DD-MM-YYYY format
-  const [year, month, day] = date.split('-');
-  const cgDate = `${day}-${month}-${year}`;
+  // DeFiLlama uses unix timestamp
+  const targetDate = new Date(date + 'T12:00:00Z');
+  const timestamp = Math.floor(targetDate.getTime() / 1000);
 
-  const url = `https://api.coingecko.com/api/v3/coins/ethereum/history?date=${cgDate}&localization=false`;
+  // DeFiLlama historical price endpoint
+  const url = `https://coins.llama.fi/prices/historical/${timestamp}/coingecko:ethereum`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: { 'Accept': 'application/json' }
+  });
 
   if (!response.ok) {
-    throw new Error(`CoinGecko API error: ${response.status} ${response.statusText}`);
+    throw new Error(`DeFiLlama API error: ${response.status}`);
   }
 
   const data = await response.json();
 
-  if (!data.market_data?.current_price?.usd) {
+  if (!data.coins || !data.coins['coingecko:ethereum']) {
     throw new Error(`No price data for ${date}`);
   }
 
-  return data.market_data.current_price.usd;
+  return data.coins['coingecko:ethereum'].price;
 }
 
 /**
@@ -228,18 +231,18 @@ Rate limits: CoinGecko free tier allows ~10-30 requests/minute.
       entries.push(entry);
       successCount++;
 
-      // Rate limit: CoinGecko free tier is ~10-30 req/min
-      // Wait 2.5 seconds between requests to be safe
+      // DeFiLlama has generous rate limits
+      // Wait 500ms between requests to be polite
       if (i < dates.length - 1) {
-        await delay(2500);
+        await delay(500);
       }
 
     } catch (error) {
       console.log(`✗ ${error.message}`);
       failCount++;
 
-      // Still wait on error (might be rate limited)
-      await delay(3000);
+      // Wait a bit longer on error
+      await delay(2000);
     }
   }
 
