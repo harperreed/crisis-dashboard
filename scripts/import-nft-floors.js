@@ -1,13 +1,19 @@
 #!/usr/bin/env node
-// ABOUTME: Import historical NFT floor prices from Dune CSV export
+// ABOUTME: Import historical NFT floor prices from Dune API or CSV
 // ABOUTME: Updates backfilled history files with accurate NFT valuations
 
+import 'dotenv/config';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { parse } from 'csv-parse/sync';
+import fetch from 'node-fetch';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Dune query ID for NFT floor prices (create this query in Dune first)
+const DUNE_QUERY_ID = process.env.DUNE_NFT_QUERY_ID || '6342986';
+const DUNE_API_KEY = process.env.DUNE_API_KEY;
 
 // NFT collections in the treasury with their contract addresses
 const COLLECTIONS = {
@@ -22,22 +28,52 @@ const COLLECTIONS = {
   '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d': { name: '0N1 Force', tokens: 3 },
 };
 
+/**
+ * Fetch results from Dune API
+ */
+async function fetchFromDune() {
+  if (!DUNE_API_KEY) {
+    throw new Error('DUNE_API_KEY not set');
+  }
+
+  console.log(`📡 Fetching from Dune query ${DUNE_QUERY_ID}...`);
+
+  const url = `https://api.dune.com/api/v1/query/${DUNE_QUERY_ID}/results?limit=10000`;
+  const response = await fetch(url, {
+    headers: {
+      'x-dune-api-key': DUNE_API_KEY,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Dune API error: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.result?.rows) {
+    throw new Error('No results in Dune response');
+  }
+
+  return data.result.rows;
+}
+
 async function main() {
   const args = process.argv.slice(2);
+  const useApi = args.includes('--api') || (!args.length && DUNE_API_KEY);
+  const csvPath = args.find(a => !a.startsWith('--'));
 
-  if (args.length < 1) {
+  if (!useApi && !csvPath) {
     console.log(`
 📊 NFT Floor Price Import Script
 
-Usage: node scripts/import-nft-floors.js <csv-file>
+Usage:
+  node scripts/import-nft-floors.js --api          # Fetch from Dune API
+  node scripts/import-nft-floors.js <csv-file>    # Import from CSV file
 
-This script imports historical NFT floor prices from a Dune CSV export
-and updates the backfilled history files with accurate NFT valuations.
-
-Steps:
-1. Run the Dune query (see below)
-2. Export results as CSV
-3. Run this script with the CSV file
+Environment variables:
+  DUNE_API_KEY         Your Dune API key
+  DUNE_NFT_QUERY_ID    Dune query ID (default: 6342986)
 
 Dune Query for your collections:
 ────────────────────────────────
@@ -45,35 +81,44 @@ ${generateDuneQuery()}
 ────────────────────────────────
 
 Save this query at: https://dune.com/queries
-Export as CSV, then run:
-  node scripts/import-nft-floors.js ~/Downloads/query_results.csv
+Then either:
+  - Set DUNE_API_KEY and run with --api
+  - Export CSV and run with the file path
 `);
     process.exit(0);
   }
 
-  const csvPath = args[0];
-
   console.log('📊 NFT Floor Price Import');
   console.log('=========================');
-  console.log(`CSV file: ${csvPath}`);
-  console.log('');
 
-  // Read CSV
-  let csvContent;
-  try {
-    csvContent = await fs.readFile(csvPath, 'utf-8');
-  } catch (error) {
-    console.error(`❌ Could not read CSV file: ${error.message}`);
-    process.exit(1);
+  let records;
+
+  if (useApi) {
+    // Fetch from Dune API
+    console.log('Source: Dune API');
+    console.log('');
+    records = await fetchFromDune();
+    console.log(`📄 Fetched ${records.length} rows from Dune`);
+  } else {
+    // Read from CSV
+    console.log(`Source: CSV file`);
+    console.log(`File: ${csvPath}`);
+    console.log('');
+
+    let csvContent;
+    try {
+      csvContent = await fs.readFile(csvPath, 'utf-8');
+    } catch (error) {
+      console.error(`❌ Could not read CSV file: ${error.message}`);
+      process.exit(1);
+    }
+
+    records = parse(csvContent, {
+      columns: true,
+      skip_empty_lines: true,
+    });
+    console.log(`📄 Parsed ${records.length} rows from CSV`);
   }
-
-  // Parse CSV
-  const records = parse(csvContent, {
-    columns: true,
-    skip_empty_lines: true,
-  });
-
-  console.log(`📄 Parsed ${records.length} rows from CSV`);
 
   // Group by date
   const floorsByDate = new Map();
