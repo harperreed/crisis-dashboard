@@ -90,6 +90,9 @@ async function main() {
     console.log(`📊 NFT collections: ${data.nfts.length}`);
     console.log(`📊 Token holders: ${data.holders.length}`);
 
+    // Save historical snapshot
+    await saveHistoricalSnapshot(data);
+
   } catch (error) {
     console.error('❌ Error fetching treasury data:', error);
     process.exit(1);
@@ -455,6 +458,68 @@ function calculateTotal(data) {
   const ethValue = data.ethBalance * data.ethPrice;
   const nftsValue = data.nfts.reduce((sum, nft) => sum + (nft.tokens.length * nft.floorPrice * data.ethPrice), 0);
   return (ethValue + nftsValue).toFixed(0);
+}
+
+async function saveHistoricalSnapshot(data) {
+  console.log('📅 Saving historical snapshot...');
+
+  const historyDir = path.join(__dirname, '../public/data/history');
+  await fs.mkdir(historyDir, { recursive: true });
+
+  // Get current date in YYYY-MM-DD format
+  const now = new Date();
+  const dateStr = now.toISOString().split('T')[0];
+
+  // Save daily snapshot
+  const snapshotPath = path.join(historyDir, `${dateStr}.json`);
+  await fs.writeFile(snapshotPath, JSON.stringify(data, null, 2));
+  console.log(`  ✓ Saved snapshot to ${dateStr}.json`);
+
+  // Update index.json
+  const indexPath = path.join(historyDir, 'index.json');
+  let index = { dates: [], firstDate: null, lastDate: null };
+
+  try {
+    const indexContent = await fs.readFile(indexPath, 'utf-8');
+    index = JSON.parse(indexContent);
+  } catch (error) {
+    console.log('  → Creating new index.json');
+  }
+
+  // Calculate total value
+  const totalValue = parseFloat(calculateTotal(data));
+
+  // Check if entry already exists for this date
+  const existingIndex = index.dates.findIndex(entry => entry.date === dateStr);
+  const newEntry = {
+    date: dateStr,
+    totalValue: totalValue,
+    ethPrice: data.ethPrice
+  };
+
+  if (existingIndex >= 0) {
+    // Update existing entry
+    index.dates[existingIndex] = newEntry;
+    console.log(`  ✓ Updated existing entry for ${dateStr}`);
+  } else {
+    // Add new entry
+    index.dates.push(newEntry);
+    console.log(`  ✓ Added new entry for ${dateStr}`);
+  }
+
+  // Sort by date
+  index.dates.sort((a, b) => a.date.localeCompare(b.date));
+
+  // Update firstDate and lastDate
+  if (index.dates.length > 0) {
+    index.firstDate = index.dates[0].date;
+    index.lastDate = index.dates[index.dates.length - 1].date;
+  }
+
+  // Save updated index
+  await fs.writeFile(indexPath, JSON.stringify(index, null, 2));
+  console.log(`  ✓ Updated index.json (${index.dates.length} total entries)`);
+  console.log(`✅ Historical snapshot complete`);
 }
 
 main();

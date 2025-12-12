@@ -34,6 +34,15 @@ jobs:
       - name: Fetch treasury data
         run: npm run fetch-data
 
+      - name: Commit history files
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add public/data/treasury-snapshot.json
+          git add public/data/history/
+          git diff --cached --quiet || git commit -m "chore: update treasury data and historical snapshot [skip ci]"
+          git push || true
+
       - name: Build project
         run: npm run build
 
