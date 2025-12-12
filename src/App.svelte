@@ -35,15 +35,22 @@
    * Handle hash changes and update current route
    */
   function handleHashChange() {
-    currentRoute = parseHash();
+    const newRoute = parseHash();
+    // Load treasury data if navigating to dashboard
+    if (newRoute.route === 'dashboard' && currentRoute.route !== 'dashboard') {
+      loadTreasuryData();
+    }
+    currentRoute = newRoute;
   }
 
   onMount(() => {
-    // Load treasury data for dashboard view
-    loadTreasuryData();
-
-    // Parse initial route
+    // Parse initial route first
     currentRoute = parseHash();
+
+    // Only load treasury data if we're on the dashboard
+    if (currentRoute.route === 'dashboard') {
+      loadTreasuryData();
+    }
 
     // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange);
