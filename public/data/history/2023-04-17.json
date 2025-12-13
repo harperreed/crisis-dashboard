@@ -785,7 +785,7 @@
       "tokens": [
         "5879"
       ],
-      "floorPrice": 0.3954956899
+      "floorPrice": 0.71
     },
     {
       "name": "MoonCatLootprint",
@@ -814,7 +814,7 @@
         "0",
         "1"
       ],
-      "floorPrice": 1.68995
+      "floorPrice": 10
     },
     {
       "name": "V1 Cryptopunks (Wrapped)",
@@ -822,7 +822,7 @@
       "tokens": [
         "5703"
       ],
-      "floorPrice": 1.493999
+      "floorPrice": 3.80001
     },
     {
       "name": "Otherdeed",
@@ -830,7 +830,7 @@
       "tokens": [
         "8313"
       ],
-      "floorPrice": 0.11984899
+      "floorPrice": 1e-18
     },
     {
       "name": "0N1 Gear",
@@ -852,7 +852,7 @@
         "5988",
         "6501"
       ],
-      "floorPrice": 0.149998
+      "floorPrice": 0.67
     },
     {
       "name": "Deebies",
@@ -993,7 +993,7 @@
       "tokens": [
         "8313"
       ],
-      "floorPrice": 6.2699999
+      "floorPrice": 53.11
     },
     {
       "name": "0N1 Comics",
@@ -1015,7 +1015,7 @@
         "16409",
         "20331"
       ],
-      "floorPrice": 0.1335
+      "floorPrice": 0.17
     },
     {
       "name": "othersoil.xyz Mint Pass",
@@ -1040,7 +1040,7 @@
         "1226",
         "2614"
       ],
-      "floorPrice": 0.1929248403999863
+      "floorPrice": 1.11
     },
     {
       "name": "GutterCatGang",

@@ -1,7 +1,7 @@
 {
   "timestamp": 1675252800000,
   "ethBalance": 30.286464216790442,
-  "ethPrice": 1582.009290145772,
+  "ethPrice": 1572.3488807195824,
   "stablecoins": {
     "USDC": 4330.379262
   },
@@ -760,7 +760,7 @@
       "tokens": [
         "269"
       ],
-      "floorPrice": 0.25915761
+      "floorPrice": 18.5
     },
     {
       "name": "Unknown Collection",
@@ -785,7 +785,7 @@
       "tokens": [
         "5879"
       ],
-      "floorPrice": 0.3954956899
+      "floorPrice": 0.4166666666666667
     },
     {
       "name": "MoonCatLootprint",
@@ -814,7 +814,7 @@
         "0",
         "1"
       ],
-      "floorPrice": 1.68995
+      "floorPrice": 28000
     },
     {
       "name": "V1 Cryptopunks (Wrapped)",
@@ -822,7 +822,7 @@
       "tokens": [
         "5703"
       ],
-      "floorPrice": 1.493999
+      "floorPrice": 4.615
     },
     {
       "name": "Otherdeed",
@@ -830,7 +830,7 @@
       "tokens": [
         "8313"
       ],
-      "floorPrice": 0.11984899
+      "floorPrice": 0.000071428571428571
     },
     {
       "name": "0N1 Gear",
@@ -852,7 +852,7 @@
         "5988",
         "6501"
       ],
-      "floorPrice": 0.149998
+      "floorPrice": 0.84
     },
     {
       "name": "Deebies",
@@ -993,7 +993,7 @@
       "tokens": [
         "8313"
       ],
-      "floorPrice": 6.2699999
+      "floorPrice": 66.5
     },
     {
       "name": "0N1 Comics",
@@ -1015,7 +1015,7 @@
         "16409",
         "20331"
       ],
-      "floorPrice": 0.1335
+      "floorPrice": 0.28006
     },
     {
       "name": "othersoil.xyz Mint Pass",
@@ -1040,7 +1040,7 @@
         "1226",
         "2614"
       ],
-      "floorPrice": 0.1929248403999863
+      "floorPrice": 1.4591
     },
     {
       "name": "GutterCatGang",
