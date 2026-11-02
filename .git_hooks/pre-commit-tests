@@ -1,0 +1,4 @@
+#!/bin/sh
+# ABOUTME: Project-specific pre-commit tests placeholder
+# ABOUTME: Add project-specific pre-commit checks here if needed
+exit 0
